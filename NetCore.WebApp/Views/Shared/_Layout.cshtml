@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - NetCore.WebApp</title>
+    <link href="~/css/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/css/owl.carousel.css" rel="stylesheet" />
+    <link href="~/css/css/lightslider.css" rel="stylesheet" />
+    <link href="~/css/css/1400.css" rel="stylesheet" />
+    <link href="~/css/css/jquery-ui.css" rel="stylesheet" />
+
+    
+</head>
+<body>
+
+    <a class="scrollup" href=""></a>
+    <div class="box_header">
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href=""><img class="img-responsive" src="~/images/logo_header.png" alt=""></a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                    <partial name="../Home/MenuBar.cshtml" />
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="noidung_site">
+        <div class="container">
+
+            <partial name="../Advert/HomeHorizontal" />
+
+            <div class="row">
+                <div id="ContentSearch">
+                    @RenderBody()
+                </div>
+                <div class="col-lg-4 col-md-4 col-sx-4 col-sm-12">
+
+                    @*@Html.Action("ProgramPartial", "Partial")
+
+
+                        @Html.Action("MessageHistory", "Partial")*@
+
+
+                    @*@Html.Action("FeedbackPartial", "Partial")*@
+                    <select class="lien_ket_ngoai" id="IdLink" onchange="GoToLink()">
+                        <option value="#">Link liên kết</option>
+                        <option value="http://www.mic.gov.vn">Bộ Thông tin Truyền thông</option>
+                        <option value="http://www.redcross.org.vn">Hội chữ thập đỏ VN</option>
+                        <option value="http://vava.org.vn">Hội nạn nhân da cam</option>
+                        <option value="http://www.mattran.org.vn">UB TƯ MTTQ VN</option>
+                        <option value="http://nhandaovtv.vn">Truyền hình nhân đạo</option>
+                        <option value="http://www.go.vn">Mạng xã hội Việt Nam </option>
+                        <option value="http://ngaymaituoisang.vn/">Quỹ Hỗ trợ bệnh nhân ung thư </option>
+                        <option value="http://trianlietsi.vn">Hội Hỗ trợ gia đình liệt sĩ Việt Nam </option>
+                        <option value="http://tamlongvang.laodong.com.vn/">Quỹ Tấm Lòng Vàng báo Lao Động</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="box_footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-sm-12">
+                    <div class="box_left_footer">
+                        <div class="row">
+                            <div class="col-lg-2 col-md-2 col-sm-12 col-sm-12"><a href=""><img class="img-responsive" src="~/images/img_logo_footer.png" alt=""></a></div>
+                            <div class="col-lg-10 col-md-10 col-sm-12 col-sm-12">
+                                <span>Cổng thông tin điện tử nhân đạo quốc gia</span>
+                                <p>Địa chỉ: tầng 17, Tòa nhà VTC, 23 Lạc Trung, Hai Bà Trưng, Hà Nội</p>
+                                <ul>
+                                    <li>Điện  thoại: 024.44501107</li>
+                                    <li>Email: cong1400@vtc.vn</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-sm-12">
+                    <div class="box_right_footer">
+                        <span>Đơn vị quản lý và vận hành:</span>
+                        <p>
+                            Tổng công ty Truyền thông đa phương tiện<br>
+                            Cơ quan thuộc Bộ Thông tin và Truyền thông
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/owl.carousel.min.js"></script>
+    <script src="~/js/lightslider.js"></script>
+    <script src="~/js/utility.js"></script>
+    <script src="~/js/jquery-ui.js"></script>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

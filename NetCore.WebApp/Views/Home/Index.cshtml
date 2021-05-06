@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="col-lg-8 col-md-8 col-sx-8 col-sm-12">
+
+    <partial name="../Home/ArticlePartial" />
+
+
+    <div class="tieude_noidung_trai">
+        video/ảnh
+        <ul class="hidden-xs">
+            <li><a href="javascript:;" onclick="videoImgIndex(9)">tất cả</a></li>
+            <li><a href="javascript:;" onclick="videoImgIndex(11)">video</a></li>
+            <li><a href="javascript:;" onclick="videoImgIndex(10)">album ảnh</a></li>
+        </ul>
+    </div>
+    <div class="box_noidung_trai">
+        <div class="row list-img-index">
+            @*@Html.Action("VideoPartial", "Home")*@
+
+        </div>
+    </div>
+    <ul class="list_xemthem">
+        <li><a id="link_videoImg" href="#video-anh">Xem thêm</a></li>
+    </ul>
+
+
+</div>
