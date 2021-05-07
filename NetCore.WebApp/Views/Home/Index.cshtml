@@ -4,7 +4,16 @@
 
 <div class="col-lg-8 col-md-8 col-sx-8 col-sm-12">
 
-    <partial name="../Home/ArticlePartial" />
+    <div class="tieude_noidung_trai">
+        tin tức
+        <partial name="../Home/MenuArticleHome" />
+    </div>
+    <div id="divLoadArticleByCate">
+        @*@Html.Action("ArticleHomePartial", "Article", new { CateId = -1 })*@
+    </div>
+    <ul class="list_xemthem">
+        <li><a href="#tin-tuc">Xem thêm</a></li>
+    </ul>
 
 
     <div class="tieude_noidung_trai">

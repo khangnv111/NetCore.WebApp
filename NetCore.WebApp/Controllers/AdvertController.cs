@@ -11,6 +11,7 @@ namespace NetCore.WebApp.Controllers
     {
         public IActionResult HomeHorizontal()
         {
+            NLogLogger.Info("HomeHorizontal.....");
             return PartialView();
         }
     }

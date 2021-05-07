@@ -1,7 +1,7 @@
 ﻿using Lib;
 using Lib.Database;
 using Microsoft.Extensions.Options;
-using NetCore.WebApp.Models;
+using NetCore.ViewModels;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

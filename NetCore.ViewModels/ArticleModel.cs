@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace NetCore.WebApp.Models
+namespace NetCore.ViewModels
 {
     public class ArticleModel
     {

@@ -25,6 +25,8 @@ namespace NetCore.WebApp.Controllers
         #region Home
         public IActionResult Index()
         {
+            int Total = 0;
+            var list = _articleAccess.SP_Menu_GetList("5", 1, 1, out Total);
             return View();
         }
 
@@ -47,7 +49,6 @@ namespace NetCore.WebApp.Controllers
 
         public IActionResult ArticlePartial()
         {
-            NLogLogger.Info("ArticlePartial.....");
             return PartialView();
         }
 

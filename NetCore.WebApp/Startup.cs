@@ -1,11 +1,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using NetCore.ViewModels;
 using NetCore.WebApp.DataAccess;
-using NetCore.WebApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +33,7 @@ namespace NetCore.WebApp
             var appSettingsSection = Configuration.GetSection("AppSetting");
             services.Configure<AppSetting>(appSettingsSection);
 
-            services.AddSingleton<ArticleAccess>();
+            //services.AddSingleton<ArticleAccess>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

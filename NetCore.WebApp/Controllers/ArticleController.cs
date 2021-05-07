@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using NetCore.ViewModels;
 using NetCore.WebApp.DataAccess;
 using NetCore.WebApp.Models;
 using System;
