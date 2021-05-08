@@ -1,8 +1,11 @@
 ﻿using Lib;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using NetCore.ViewModels;
 using NetCore.WebApp.DataAccess;
 using NetCore.WebApp.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -14,19 +17,22 @@ namespace NetCore.WebApp.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly ArticleAccess _articleAccess;
+        private readonly AppSetting _appSetting;
 
-        public HomeController(ILogger<HomeController> logger, ArticleAccess articleAccess)
+        public HomeController(ILogger<HomeController> logger, IOptions<AppSetting> appSetting)
         {
             _logger = logger;
-            _articleAccess = articleAccess;
+
+            _appSetting = appSetting.Value;
         }
 
         #region Home
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            int Total = 0;
-            var list = _articleAccess.SP_Menu_GetList("5", 1, 1, out Total);
+            string url = _appSetting.UrlApi + "api/article/menu/get";
+            var items = await ApiService.GetAsync<Rootobject<ArticleModel>>(url);
+            NLogLogger.Info(JsonConvert.SerializeObject(items));
+
             return View();
         }
 
@@ -54,19 +60,7 @@ namespace NetCore.WebApp.Controllers
 
         public IActionResult MenuArticleHome(string UrlRewrite)
         {
-            NLogLogger.Info("MenuArticleHome.....");
-            string MenuId = "5";//Lấy cate con của Cate tin tức
-            if (UrlRewrite == "van-ban-phap-ly" || UrlRewrite == "cau-hoi-thuong-gap")
-                MenuId = "1";//Lấy cate con của Cate giới thiệu
-
-            //Album / Video
-            if (UrlRewrite == "album-anh" || UrlRewrite == "video" || UrlRewrite == "video-anh")
-                MenuId = "9";//Lấy cate con của Cate giới thiệu
-
-            int Total = 0;
-            var list = _articleAccess.SP_Menu_GetList(MenuId, 1, 1, out Total);
-
-            return PartialView(list);
+            return PartialView();
         }
     }
 }

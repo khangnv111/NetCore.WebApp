@@ -13,5 +13,6 @@ namespace NetCore.ViewModels
     public class AppSetting
     {
         public string UrlRoot { get; set; }
+        public string UrlApi { get; set; }
     }
 }

@@ -24,6 +24,15 @@ namespace NetCore.BankendApi.Controllers
         }
 
         [HttpGet]
+        [Route("menu/get")]
+        public IActionResult MenuGetList([FromQuery] ArticleRequest request)
+        {
+            int totalRow = 0;
+            var list = _articleAccess.SP_Menu_GetList(request.MenuIDs, Convert.ToInt16(request.GetChild), Convert.ToInt16(request.Status), out totalRow);
+            return Ok(new { TotalRow = totalRow, Items = list });
+        }
+
+        [HttpGet]
         [Route("get-list")]
         public IActionResult GetList([FromQuery] ArticleRequest request)
         {

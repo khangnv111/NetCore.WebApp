@@ -37,7 +37,7 @@
     <div class="noidung_site">
         <div class="container">
 
-            <partial name="../Advert/HomeHorizontal" />
+            @await Component.InvokeAsync("Advert")
 
             <div class="row">
                 <div id="ContentSearch">
@@ -48,7 +48,7 @@
                     @*@Html.Action("ProgramPartial", "Partial")
 
 
-                        @Html.Action("MessageHistory", "Partial")*@
+                @Html.Action("MessageHistory", "Partial")*@
 
 
                     @*@Html.Action("FeedbackPartial", "Partial")*@

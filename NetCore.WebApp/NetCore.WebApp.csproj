@@ -13,8 +13,4 @@
     <ProjectReference Include="..\NetCore.ViewModels\NetCore.ViewModels.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\Shared\Components\" />
-  </ItemGroup>
-
 </Project>
