@@ -1,0 +1,46 @@
+﻿@using Lib
+@using NetCore.ViewModels
+@model List<ArticleModel>
+@if (Model != null && Model.Count > 0)
+{
+    Lib.Nomark rw = new Lib.Nomark();
+    var urlRoot = ViewBag.UrlRoot;
+    var _count = 0;
+
+    <div class="box_noidung_trai">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                var urlLink = urlRoot + rw.VietnameseNoMark(item.Title.ToLower()) + "-" + item.ArticleID.ToString();
+
+                <div class="col-lg-6 col-md-6 col-sx-8 col-sm-12">
+                    @if (_count % 2 == 0)
+                    {
+                        <div class="box_img_link_tintuc">
+                            <div class="box_img_tin_tuc"><a href="@urlLink"><img src="@item.Image" alt="@item.Title" style="width: 360px; height: 220px"></a></div>
+                            <a class="text_tieude_ud" href="@urlLink">@item.Title</a>
+                            <span>@item.CreateDate.ToString("dd/MM/yyyy HH:mm")</span>
+                            <p>@item.Description, 150</p>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="box_img_link_tintuc">
+                            <div class="box_img_tin_tuc"><a href="@urlLink"><img src="@item.Image.360.220.cache" alt="@item.Title"></a></div>
+                            <a class="text_tieude_ud" href="@urlLink">@item.Title</a>
+                            <span>@item.CreateDate.ToString("dd/MM/yyyy HH:mm")</span>
+                            <p>@item.Description, 150</p>
+                        </div>
+
+                    }
+                </div>
+                if (_count % 2 != 0)
+                {
+                    <div class="clear"></div>
+                }
+                _count++;
+            }
+
+        </div>
+    </div>
+}

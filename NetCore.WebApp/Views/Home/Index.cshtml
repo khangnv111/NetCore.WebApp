@@ -9,7 +9,7 @@
         <partial name="../Home/MenuArticleHome" />
     </div>
     <div id="divLoadArticleByCate">
-        @*@Html.Action("ArticleHomePartial", "Article", new { CateId = -1 })*@
+        @await Component.InvokeAsync("Article", new { CateId = -1 })
     </div>
     <ul class="list_xemthem">
         <li><a href="#tin-tuc">Xem thêm</a></li>

@@ -23,7 +23,7 @@ namespace NetCore.WebApp.Controllers.Components
             if (CateId != -1)
                 MenuID = CateId;
 
-            string url = _appSetting.UrlApi + "api/article/get-list?TopRow=1&isHot=1&Page=1&PageSize=5";
+            string url = _appSetting.UrlApi + "api/article/get-list?TopRow=10&MenuID=" + MenuID + "&isHot=-1&Page=1&PageSize=4";
             var data = await ApiService.GetAsync<Rootobject<ArticleModel>>(url);
             //NLogLogger.Info("InvokeAsync: " + JsonConvert.SerializeObject(data));
             return View(data.Items);
