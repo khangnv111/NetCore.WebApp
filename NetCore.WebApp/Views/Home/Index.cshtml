@@ -1,4 +1,5 @@
-﻿@{
+﻿@model HomeViewModel
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -9,7 +10,52 @@
         <partial name="../Home/MenuArticleHome" />
     </div>
     <div id="divLoadArticleByCate">
-        @await Component.InvokeAsync("Article", new { CateId = -1 })
+        @{
+            Lib.Nomark rw = new Lib.Nomark();
+            var urlRoot = ViewBag.UrlRoot;
+            var _count = 0;
+        }
+
+        <div class="box_noidung_trai">
+            <div class="row">
+                @if (Model != null)
+                {
+                    @foreach (var item in Model.ListArticle)
+                    {
+                        var urlLink = urlRoot + rw.VietnameseNoMark(item.Title.ToLower()) + "-post" + item.ArticleID.ToString();
+
+                        <div class="col-lg-6 col-md-6 col-sx-8 col-sm-12">
+                            @if (_count % 2 == 0)
+                            {
+                                <div class="box_img_link_tintuc">
+                                    <div class="box_img_tin_tuc"><a href="@urlLink"><img src="@item.Image" alt="@item.Title" style="width: 360px; height: 220px"></a></div>
+                                    <a class="text_tieude_ud" href="@urlLink">@item.Title</a>
+                                    <span>@item.CreateDate.ToString("dd/MM/yyyy HH:mm")</span>
+                                    <p>@item.Description, 150</p>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="box_img_link_tintuc">
+                                    <div class="box_img_tin_tuc"><a href="@urlLink"><img src="@item.Image" style="width: 360px; height: 220px" alt="@item.Title"></a></div>
+                                    <a class="text_tieude_ud" href="@urlLink">@item.Title</a>
+                                    <span>@item.CreateDate.ToString("dd/MM/yyyy HH:mm")</span>
+                                    <p>@item.Description, 150</p>
+                                </div>
+
+                            }
+                        </div>
+                        if (_count % 2 != 0)
+                        {
+                            <div class="clear"></div>
+                        }
+                        _count++;
+                    }
+                }
+
+            </div>
+        </div>
+
     </div>
     <ul class="list_xemthem">
         <li><a href="#tin-tuc">Xem thêm</a></li>
@@ -27,6 +73,35 @@
     <div class="box_noidung_trai">
         <div class="row list-img-index">
             @*@Html.Action("VideoPartial", "Home")*@
+            @if (Model != null)
+            {
+                for (int i = 0; i < Model.ListVideo.Count; i++)
+                {
+                    var item = Model.ListVideo[i];
+
+                    var rwtitle = urlRoot + rw.VietnameseNoMark(item.Title.ToLower()) + "-post" + item.ArticleID.ToString();
+                    if (i % 2 == 0)
+                    {
+                        @: <div class="col-lg-6 col-md-6 col-sx-8 col-sm-12">
+                    }
+
+                    <div class="box_img_link_tintuc">
+                        <div class="box_img_tin_tuc">
+                            <a href="@rwtitle">
+                                <img src="@item.Image" alt="" title="@item.Title" style="width: 360px; height:220px ">
+                            </a>
+                        </div>
+                        <a class="text_tieude_ud" href="@rwtitle" title="@item.Title" style="display: -webkit-box; -webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;">@item.Title</a>
+                        <span>@item.PublishDate.ToString("dd/MM/yyyy HH:mm")</span>
+                        <p title="@item.Description" style="display: -webkit-box; -webkit-line-clamp: 3;-webkit-box-orient: vertical;overflow: hidden;">@item.Description</p>
+                    </div>
+
+                    if (i % 2 != 0 || i == ViewBag.Count - 1)
+                    {
+                        @: </div>
+                    }
+                }
+            }
 
         </div>
     </div>

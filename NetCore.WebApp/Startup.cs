@@ -27,7 +27,7 @@ namespace NetCore.WebApp
             services.AddControllersWithViews();
 
             //Khai báo ConnectionString
-            services.Configure<ConnectionString>(Configuration.GetSection("ConnectionStrings"));
+            //services.Configure<ConnectionString>(Configuration.GetSection("ConnectionStrings"));
 
             //Khai báo appSetting
             var appSettingsSection = Configuration.GetSection("AppSetting");

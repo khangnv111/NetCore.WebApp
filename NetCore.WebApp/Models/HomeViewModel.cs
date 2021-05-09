@@ -8,6 +8,7 @@ namespace NetCore.WebApp.Models
 {
     public class HomeViewModel
     {
-        public List<MenuModel> ListMenu { get; set; }
+        public List<ArticleModel> ListArticle { get; set; }
+        public List<ArticleModel> ListVideo { get; set; }
     }
 }

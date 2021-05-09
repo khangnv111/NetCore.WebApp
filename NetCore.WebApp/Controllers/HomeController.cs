@@ -29,11 +29,20 @@ namespace NetCore.WebApp.Controllers
         #region Home
         public async Task<IActionResult> Index()
         {
-            string url = _appSetting.UrlApi + "api/article/menu/get";
-            var items = await ApiService.GetAsync<Rootobject<ArticleModel>>(url);
-            NLogLogger.Info(JsonConvert.SerializeObject(items));
+            string url = _appSetting.UrlApi + "api/article/get-list?TopRow=10&MenuID=5&isHot=-1&Page=1&PageSize=4";
+            var listArt = await ApiService.GetAsync<RootObject<ArticleModel>>(url);
 
-            return View();
+            string urlVideo = _appSetting.UrlApi + "api/article/get-list?TopRow=4&MenuID=9&isHot=-1&Page=1&PageSize=4";
+            var listVideo = await ApiService.GetAsync<RootObject<ArticleModel>>(url);
+
+            var data = new HomeViewModel
+            {
+                ListArticle = listArt.Items,
+                ListVideo = listVideo.Items,
+            };
+            ViewBag.UrlRoot = _appSetting.UrlRoot;
+
+            return View(data);
         }
 
         public IActionResult Privacy()

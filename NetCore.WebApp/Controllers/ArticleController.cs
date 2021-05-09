@@ -12,11 +12,11 @@ namespace NetCore.WebApp.Controllers
 {
     public class ArticleController : Controller
     {
-        private readonly ArticleAccess _articleAccess;
+        //private readonly ArticleAccess _articleAccess;
         private readonly AppSetting _appSetting;
-        public ArticleController(ArticleAccess articleAccess, IOptions<AppSetting> appSetting)
+        public ArticleController(IOptions<AppSetting> appSetting)
         {
-            _articleAccess = articleAccess;
+            //_articleAccess = articleAccess;
             _appSetting = appSetting.Value;
         }
         public IActionResult ArticleHomePartial(int CateId)
@@ -24,18 +24,18 @@ namespace NetCore.WebApp.Controllers
             int Total = 0;
             var lst = new List<ArticleModel>();
             var article = new ArticleModel();
-            if (CateId == -1)
-            {
-                lst = _articleAccess.SP_Article_GetList_Web(10, 0, "", 5, "", "", -1, 1, 4, out Total);
-            }
-            else
-            {
-                lst = _articleAccess.SP_Article_GetList_Web(10, 0, "", CateId, "", "", -1, 1, 4, out Total);
-            }
+            //if (CateId == -1)
+            //{
+            //    lst = _articleAccess.SP_Article_GetList_Web(10, 0, "", 5, "", "", -1, 1, 4, out Total);
+            //}
+            //else
+            //{
+            //    lst = _articleAccess.SP_Article_GetList_Web(10, 0, "", CateId, "", "", -1, 1, 4, out Total);
+            //}
 
-            ViewBag.UrlRoot = _appSetting.UrlRoot;
+            //ViewBag.UrlRoot = _appSetting.UrlRoot;
 
-            return PartialView(lst);
+            return PartialView();
         }
     }
 }
