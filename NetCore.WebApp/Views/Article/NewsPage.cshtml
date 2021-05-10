@@ -1,0 +1,60 @@
+﻿@model NewsPageModel
+@using Lib;
+@{ 
+    var UrlRoot = ViewBag.UrlRoot;
+    var rw = new Nomark();
+}
+<div class="col-lg-8 col-md-8 col-sx-8 col-sm-12">
+    <div class="tieude_noidung_trai">
+        Tin tức
+        @*@Html.Action("MenuArticle", "Partial")*@
+    </div>
+
+    @if (Model != null && Model.ArtHot != null)
+    {
+        var urlLink = UrlRoot + rw.VietnameseNoMark(Model.ArtHot.Title.ToLower()) + "-post" + Model.ArtHot.ArticleID.ToString();
+        <div class="noidung_chitiet_tintuc margin_bottom_30px">
+            <div class="box_img_chitiet_tin">
+                @if (!string.IsNullOrEmpty(Model.ArtHot.ImageDetail))
+                {
+                    <a style="cursor:pointer;" href="@urlLink">
+                        <center> <img src="@Model.ArtHot.ImageDetail" class="img-responsive" alt="@Model.ArtHot.Title"></center>
+                    </a>
+                }
+            </div>
+            <span style="font-size: 24px;"><a style="cursor:pointer;" href="@urlLink">@Model.ArtHot.Title</a></span>
+            <table style="width: 100%;margin-bottom: 11px;">
+                <tr>
+                    <td style="font-style:italic;">@Model.ArtHot.CreateDate.ToString("dd/MM/yyyy")</td>
+                    <td style="font-style:italic;float:right"><img src="images/icon_view.png" alt="">@Model.ArtHot.CountView Xem</td>
+                </tr>
+            </table>
+            <p>
+                @Html.Raw(Model.ArtHot.Description)
+            </p>
+        </div>
+    }
+
+    <div class="tieude_noidung_trai">
+        Tin cổng 1400
+    </div>
+    @await Component.InvokeAsync("NewsPage", new { Url = "tin-cong-1400" })
+
+    <ul class="list_xemthem">
+        <li><a href="tin-cong-1400">Xem thêm</a></li>
+    </ul>
+    <div class="tieude_noidung_trai">
+        sự kiện
+    </div>
+    @await Component.InvokeAsync("NewsPage", new { Url = "su-kien" })
+    <ul class="list_xemthem">
+        <li><a href="su-kien">Xem thêm</a></li>
+    </ul>
+    <div class="tieude_noidung_trai">
+        hoạt động nhân đạo
+    </div>
+    @await Component.InvokeAsync("NewsPage", new { Url = "hoat-dong-nhan-dao" })
+    <ul class="list_xemthem">
+        <li><a href="hoat-dong-nhan-dao">Xem thêm</a></li>
+    </ul>
+</div>

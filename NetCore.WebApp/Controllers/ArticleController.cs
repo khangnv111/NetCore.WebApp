@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Lib;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using NetCore.ViewModels;
 using NetCore.WebApp.DataAccess;
@@ -19,23 +20,26 @@ namespace NetCore.WebApp.Controllers
             //_articleAccess = articleAccess;
             _appSetting = appSetting.Value;
         }
-        public IActionResult ArticleHomePartial(int CateId)
+
+        #region Tin tức
+        public async Task<IActionResult> NewsPage()
         {
-            int Total = 0;
-            var lst = new List<ArticleModel>();
-            var article = new ArticleModel();
-            //if (CateId == -1)
-            //{
-            //    lst = _articleAccess.SP_Article_GetList_Web(10, 0, "", 5, "", "", -1, 1, 4, out Total);
-            //}
-            //else
-            //{
-            //    lst = _articleAccess.SP_Article_GetList_Web(10, 0, "", CateId, "", "", -1, 1, 4, out Total);
-            //}
+            string url = _appSetting.UrlApi + "api/article/get-list?TopRow=1&MenuID=5&isHot=-1&Page=1&PageSize=10";
+            var listArt = await ApiService.GetAsync<RootObject<ArticleModel>>(url);
+            var data = new NewsPageModel { ArtHot = listArt.Items.FirstOrDefault() };
 
-            //ViewBag.UrlRoot = _appSetting.UrlRoot;
+            ViewBag.UrlRoot = _appSetting.UrlRoot;
 
-            return PartialView();
+            return View(data);
         }
+        #endregion
+
+        #region Video hình ảnh
+        public IActionResult VideoImage()
+        {
+            return View();
+        }
+        #endregion
+
     }
 }

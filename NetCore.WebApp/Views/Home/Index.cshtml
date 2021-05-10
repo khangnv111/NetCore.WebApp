@@ -7,19 +7,30 @@
 
     <div class="tieude_noidung_trai">
         tin tức
-        <partial name="../Home/MenuArticleHome" />
+        <ul class="hidden-xs">
+            @if (Model != null)
+            {
+                foreach (var item in Model.ListMenu)
+                {
+                    if (item.MenuID != 1 && item.MenuID != 2)
+                    {
+                        <li><a href="javascript:;" onclick="LoadArticleByCate(@item.MenuID)">@item.MenuName</a></li>
+                    }
+                }
+            }
+        </ul>
     </div>
     <div id="divLoadArticleByCate">
         @{
             Lib.Nomark rw = new Lib.Nomark();
             var urlRoot = ViewBag.UrlRoot;
-            var _count = 0;
         }
 
         <div class="box_noidung_trai">
             <div class="row">
                 @if (Model != null)
                 {
+                    var _count = 0;
                     @foreach (var item in Model.ListArticle)
                     {
                         var urlLink = urlRoot + rw.VietnameseNoMark(item.Title.ToLower()) + "-post" + item.ArticleID.ToString();
@@ -58,7 +69,7 @@
 
     </div>
     <ul class="list_xemthem">
-        <li><a href="#tin-tuc">Xem thêm</a></li>
+        <li><a href="tin-tuc">Xem thêm</a></li>
     </ul>
 
 
@@ -73,7 +84,7 @@
     <div class="box_noidung_trai">
         <div class="row list-img-index">
             @*@Html.Action("VideoPartial", "Home")*@
-            @if (Model != null)
+            @if(Model != null)
             {
                 for (int i = 0; i < Model.ListVideo.Count; i++)
                 {

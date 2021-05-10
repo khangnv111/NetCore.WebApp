@@ -10,7 +10,9 @@
     <link href="~/css/css/1400.css" rel="stylesheet" />
     <link href="~/css/css/jquery-ui.css" rel="stylesheet" />
 
-    
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
 </head>
 <body>
 
@@ -45,13 +47,18 @@
                 </div>
                 <div class="col-lg-4 col-md-4 col-sx-4 col-sm-12">
 
-                    @*@Html.Action("ProgramPartial", "Partial")
+                    @await Component.InvokeAsync("Program")
 
+                    <div class="box_gopy" id="gopy">
+                        <span>gửi thư góp ý</span>
+                        <ul>
+                            <li><input type="text" id="Email" placeholder="Nhập email"></li>
+                            <li><input type="text" id="Mobile" placeholder="Nhập số điện thoại" maxlength="15"></li>
+                        </ul>
+                        <textarea placeholder="Nhập nội dung" id="Content"></textarea>
+                        <a href="javascript:;" onclick="SendSuggest()">Gửi góp ý</a>
+                    </div>
 
-                @Html.Action("MessageHistory", "Partial")*@
-
-
-                    @*@Html.Action("FeedbackPartial", "Partial")*@
                     <select class="lien_ket_ngoai" id="IdLink" onchange="GoToLink()">
                         <option value="#">Link liên kết</option>
                         <option value="http://www.mic.gov.vn">Bộ Thông tin Truyền thông</option>
@@ -99,9 +106,6 @@
             </div>
         </div>
     </div>
-
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
     <script src="~/js/bootstrap.min.js"></script>
     <script src="~/js/owl.carousel.min.js"></script>

@@ -10,5 +10,6 @@ namespace NetCore.WebApp.Models
     {
         public List<ArticleModel> ListArticle { get; set; }
         public List<ArticleModel> ListVideo { get; set; }
+        public List<MenuModel> ListMenu { get; set; }
     }
 }

@@ -33,12 +33,16 @@ namespace NetCore.WebApp.Controllers
             var listArt = await ApiService.GetAsync<RootObject<ArticleModel>>(url);
 
             string urlVideo = _appSetting.UrlApi + "api/article/get-list?TopRow=4&MenuID=9&isHot=-1&Page=1&PageSize=4";
-            var listVideo = await ApiService.GetAsync<RootObject<ArticleModel>>(url);
+            var listVideo = await ApiService.GetAsync<RootObject<ArticleModel>>(urlVideo);
+
+            string urlMenu = _appSetting.UrlApi + "api/article/menu/get?MenuIDs=5&GetChild=1&Status=1";
+            var listMenu = await ApiService.GetAsync<RootObject<MenuModel>>(urlMenu);
 
             var data = new HomeViewModel
             {
                 ListArticle = listArt.Items,
                 ListVideo = listVideo.Items,
+                ListMenu = listMenu.Items,
             };
             ViewBag.UrlRoot = _appSetting.UrlRoot;
 

@@ -24,8 +24,8 @@ namespace NetCore.BankendApi.Controllers
         }
 
         [HttpGet]
-        [Route("get-list")]
-        public IActionResult ProgramList([FromQuery] ProgramRequest request)
+        [Route("get")]
+        public IActionResult ProgramGet([FromQuery] ProgramRequest request)
         {
             int totalRow = 0;
             var list = _programAccess.SP_Event_GetList_Web(request.EventID, request.EventName, request.IsSetted, request.Page, request.PageSize, out totalRow);

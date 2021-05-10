@@ -61,6 +61,13 @@ namespace NetCore.WebApp
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "tin-tuc", new {
+                        controller = "Article",
+                        action = "NewsPage"
+                    });
             });
         }
     }
