@@ -1,4 +1,82 @@
-﻿
+﻿@using Lib 
+@model DonateOnlineModel
 @{
     Layout = null;
+    var UrlRoot = ViewBag.UrlRoot;
+    var rw = new Nomark();
 }
+
+@if (Model != null && Model.ListArt != null)
+{
+    <div class="tieude_noidung_trai">
+        các tin khác
+    </div>
+    <div class="box_noidung_trai">
+        <div class="row">
+            @for (int i = 0; i < Model.ListArt.Count; i++)
+            {
+                var item = Model.ListArt[i];
+                var urlLink = UrlRoot + rw.UrlReMark(item.Title.ToLower()) + "-post" + item.ArticleID.ToString();
+                if (i % 2 == 0)
+                {
+                    <div class="col-lg-6 col-md-6 col-sx-8 col-sm-12">
+                        <div class="box_img_link_tintuc">
+                            <div class="box_img_tin_tuc">
+                                <a href="@urlLink">
+                                    <img src="@item.Image" alt="@item.Title" style="border-style: solid; border-width: 1px; border-color: #02a7e1; width: 360px; height: 220px">
+                                </a>
+                            </div>
+                            <a href="@urlLink">@item.Title</a>
+                            <span>@item.CreateDate.ToString("dd/MM/yyyy HH:mm")</span>
+                            <p>@item.Description</p>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-lg-6 col-md-6 col-sx-8 col-sm-12">
+                        <div class="box_img_link_tintuc">
+                            <div class="box_img_tin_tuc">
+                                <a href="@urlLink"><img src="@item.Image" alt="@item.Title" style="border-style: solid; border-width: 1px; border-color: #02a7e1; width: 360px; height: 220px"></a>
+                            </div>
+                            <a href="@urlLink">@item.Title</a>
+                            <span>@item.CreateDate.ToString("dd/MM/yyyy HH:mm")</span>
+                            <p>@item.Description</p>
+                        </div>
+                    </div>
+                }
+            }
+
+
+        </div>
+    </div>
+    if (Model.TotalPage > 1)
+    {
+        int page = Model.Page; //page hien tai
+        int total_page = Model.TotalPage; //tong so page
+        int prePage = page - 1;
+        int nextPage = page + 1;
+        <ul class="list_phantrang_chitiet">
+            <li @if (page == 1) { prePage = page; @: class="disabled"
+                }><a href="javascript:;" onclick="PagingRelate(@ViewBag.Id, @prePage)"></a></li>
+            @for (int i = page - 2; i <= page + 2; i++)
+            {
+                if (i > 0 && i <= total_page)
+                {
+                    if (i == page)
+                    {
+                        <li style="background-color: #02a7e1;"><a style="color: #fff;" href="javascript:;" onclick="PagingRelate(@ViewBag.Id, @i)">@i</a></li>
+                    }
+                    else
+                    {
+                        <li><a href="javascript:;" onclick="PagingRelate(@ViewBag.Id, @i)">@i</a></li>
+                    }
+                }
+            }
+
+            <li @if (page == total_page) { nextPage = page; @: class="disabled"
+                }><a href="javascript:;" onclick="PagingRelate(@ViewBag.Id, @nextPage)"></a></li>
+        </ul>
+    }
+}
+

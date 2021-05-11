@@ -49,15 +49,30 @@ namespace NetCore.WebApp.Controllers
                 _data.ListImage = listImage.Items;
             }
 
-            data.Detail = data.Detail.Replace("<img ", "<img class=\"img-responsive\"");
+            if (!String.IsNullOrEmpty(data.Detail))
+            {
+                data.Detail = data.Detail.Replace("<img ", "<img class=\"img-responsive\"");
+            }
+
             _data.Detail = data;
 
             return View(_data);
         }
 
-        public IActionResult NewsRelation()
+        public async Task<IActionResult> NewsRelation(int Id, int Page)
         {
-            return View();
+            string url = _appSetting.UrlApi + "api/article/relation/getst?TopRow=10&ArticleID=" + Id + "&Page=1&PageSize=2";
+            var list = await ApiService.GetAsync<RootObject<ArticleModel>>(url);
+            var _data = new DonateOnlineModel();
+            _data.Page = Page;
+            _data.Total = list.TotalRow;
+            _data.ListArt = list.Items;
+            _data.Total = (int)Math.Ceiling((decimal)(list.TotalRow / 2));
+
+            ViewBag.Id = Id;
+            ViewBag.UrlRoot = _appSetting.UrlRoot;
+
+            return View(_data);
         }
         #endregion
 

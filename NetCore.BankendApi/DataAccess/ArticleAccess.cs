@@ -108,5 +108,31 @@ namespace NetCore.BankendApi.DataAccess
             }
 
         }
+
+        public List<ArticleModel> SP_Article_GetListSameMenu_Web(int TopRow, int ArticleID, int Page, int PageSize, out int TotalRow)
+        {
+            TotalRow = 0;
+            try
+            {
+                var pars = new SqlParameter[5];
+                pars[0] = new SqlParameter("@TopRow", TopRow);
+                pars[1] = new SqlParameter("@ArticleID", ArticleID);
+                pars[2] = new SqlParameter("@Page", Page);
+                pars[3] = new SqlParameter("@PageSize", PageSize);
+                pars[4] = new SqlParameter("@TotalRow", SqlDbType.Int) { Direction = ParameterDirection.Output };
+                var list = db.GetListSP<ArticleModel>("SP_Article_GetListSameMenu_Web", pars);
+
+                if (list != null || list.Count >= 0)
+                {
+                    TotalRow = Convert.ToInt32(pars[4].Value);
+                }
+                return list;
+            }
+            catch (Exception ex)
+            {
+                NLogLogger.Exception(ex);
+                return new List<ArticleModel>();
+            }
+        }
     }
 }

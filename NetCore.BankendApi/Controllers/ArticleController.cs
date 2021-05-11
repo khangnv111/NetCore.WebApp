@@ -51,5 +51,14 @@ namespace NetCore.BankendApi.Controllers
             return Ok(new { TotalRow = totalRow, Items = list });
         }
 
+        [HttpGet]
+        [Route("relation/get")]
+        public IActionResult GetArticleRelationList([FromQuery] ArticleRequest request)
+        {
+            int totalRow = 0;
+            var list = _articleAccess.SP_Article_GetListSameMenu_Web(request.TopRow, request.ArticleID, request.Page, request.PageSize, out totalRow);
+            return Ok(new { TotalRow = totalRow, Items = list });
+        }
+
     }
 }

@@ -18,4 +18,22 @@ function PageOnlineSupport(CurrentPage) {
             $("#list_article").html(data);
         },
     });
-}
+};
+
+function PagingRelate(Id, page) {
+    console.log("comme here....");
+    $.ajax({
+        type: "GET",
+        url: UrlRoot + 'Article/NewsRelation',
+        cache: false,
+        data: {
+            Id: Id,
+            Page: page,
+        },
+        dataType: "html",
+        success: function (data) {
+console.log("data: ", data);
+            $("#show_relationArticle").html(data);
+        },
+    });
+};

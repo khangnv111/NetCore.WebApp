@@ -138,6 +138,12 @@
         <div id="show_relationArticle">
             @*@Html.Action("RelationArticlePartial", "Article", new { ArticleId = Model.ArticleID, CurrentPage = 1 })*@
         </div>
+
+        <script>
+            $(document).ready(function() {
+                PagingRelate(@data.ArticleID, 1);
+            });
+        </script>
     }
 
 
