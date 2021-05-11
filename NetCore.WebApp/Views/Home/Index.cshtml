@@ -33,7 +33,7 @@
                     var _count = 0;
                     @foreach (var item in Model.ListArticle)
                     {
-                        var urlLink = urlRoot + rw.VietnameseNoMark(item.Title.ToLower()) + "-post" + item.ArticleID.ToString();
+                        var urlLink = urlRoot + rw.UrlReMark(item.Title.ToLower()) + "-post" + item.ArticleID.ToString();
 
                         <div class="col-lg-6 col-md-6 col-sx-8 col-sm-12">
                             @if (_count % 2 == 0)
@@ -90,7 +90,7 @@
                 {
                     var item = Model.ListVideo[i];
 
-                    var rwtitle = urlRoot + rw.VietnameseNoMark(item.Title.ToLower()) + "-post" + item.ArticleID.ToString();
+                    var rwtitle = urlRoot + rw.UrlReMark(item.Title.ToLower()) + "-post" + item.ArticleID.ToString();
                     if (i % 2 == 0)
                     {
                         @: <div class="col-lg-6 col-md-6 col-sx-8 col-sm-12">

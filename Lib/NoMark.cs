@@ -210,6 +210,20 @@ namespace Lib
             return Str;
         }
 
+        public string UrlReMark(string Str)
+        {
+            if (String.IsNullOrEmpty(Str))
+            {
+                return "";
+            }
+
+            Str = VietnameseNoMark(Str);
+            Str = VietnameseNoMark(Str);
+            Str = ReplaceSymbol(Str);
+
+            return Str;
+        }
+
         //  replace các ký tự đặc biệt
         public string ReplaceSymbol(string Str)
         {

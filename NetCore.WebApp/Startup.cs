@@ -63,10 +63,33 @@ namespace NetCore.WebApp
                     pattern: "{controller=Home}/{action=Index}/{id?}");
 
                 endpoints.MapControllerRoute(
-                    name: "default",
+                    name: "Tin tuc",
                     pattern: "tin-tuc", new {
                         controller = "Article",
                         action = "NewsPage"
+                    });
+
+                endpoints.MapControllerRoute(
+                    name: "Video anh",
+                    pattern: "video-anh", new
+                    {
+                        controller = "Article",
+                        action = "VideoImage"
+                    });
+                endpoints.MapControllerRoute(
+                    name: "Ung ho truc tuyen",
+                    pattern: "ung-ho-truc-tuyen", new
+                    {
+                        controller = "Article",
+                        action = "DonateOnline"
+                    });
+
+                endpoints.MapControllerRoute(
+                    name: "Chi tiet tin tuc",
+                    pattern: "{url}-post{id}", new
+                    {
+                        controller = "Article",
+                        action = "NewsDetail"
                     });
             });
         }

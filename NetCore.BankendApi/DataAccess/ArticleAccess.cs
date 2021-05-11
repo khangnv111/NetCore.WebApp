@@ -83,5 +83,30 @@ namespace NetCore.BankendApi.DataAccess
                 return new List<ArticleModel>();
             }
         }
+
+        public List<ArticleImage> SP_ArticleImage_GetList(int TopRow, int ImageID, int ArticleID, int Status, int Page, int PageSize, out int TotalRow)
+        {
+            try
+            {
+                var pars = new SqlParameter[7];
+                pars[0] = new SqlParameter("@TopRow", TopRow);
+                pars[1] = new SqlParameter("@ImageID", ImageID);
+                pars[2] = new SqlParameter("@ArticleID", ArticleID);
+                pars[3] = new SqlParameter("@Status", Status);
+                pars[4] = new SqlParameter("@Page", Page);
+                pars[5] = new SqlParameter("@PageSize", PageSize);
+                pars[6] = new SqlParameter("@TotalRow", SqlDbType.Int) { Direction = ParameterDirection.Output };
+                var list = db.GetListSP<ArticleImage>("SP_ArticleImage_GetList", pars);
+                TotalRow = Convert.ToInt32(pars[6].Value);
+                return list;
+            }
+            catch (Exception ex)
+            {
+                NLogLogger.Exception(ex);
+                TotalRow = 0;
+                return new List<ArticleImage>();
+            }
+
+        }
     }
 }

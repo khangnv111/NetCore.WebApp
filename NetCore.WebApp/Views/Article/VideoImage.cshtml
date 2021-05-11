@@ -1,36 +1,37 @@
-﻿@{
-    W1400.Utility.NoMark rw = new W1400.Utility.NoMark();
+﻿@model NewsPageModel
+@using Lib
+@{
+    var UrlRoot = ViewBag.UrlRoot;
+    var rw = new Nomark();
 }
 <div class="col-lg-8 col-md-8 col-sx-8 col-sm-12">
     <div class="tieude_noidung_trai">
         Video ảnh
-        @*@Html.Action("MenuArticle", "Partial", new { UrlRewrite = "video-anh" })*@
         <ul class="hidden-xs">
-            <li><a href="@System.Configuration.ConfigurationManager.AppSettings["URL_ROOT"]video-anh">VIDEO/ẢNH</a></li>
-            <li><a href="@System.Configuration.ConfigurationManager.AppSettings["URL_ROOT"]album-anh">ALBUM ẢNH</a></li>
-            <li><a href="@System.Configuration.ConfigurationManager.AppSettings["URL_ROOT"]video">VIDEO</a></li>
+            <li><a href="video-anh">VIDEO/ẢNH</a></li>
+            <li><a href="album-anh">ALBUM ẢNH</a></li>
+            <li><a href="video">VIDEO</a></li>
         </ul>
     </div>
 
     <div class="noidung_chitiet_tintuc margin_bottom_30px">
-        @if (ViewBag.Article != null)
+        @if (Model != null && Model.ArtHot != null)
         {
+            var urlLink = UrlRoot + rw.UrlReMark(Model.ArtHot.Title.ToLower()) + "-post" + Model.ArtHot.ArticleID.ToString();
+
             <div class="box_img_chitiet_tin">
-                @if (!string.IsNullOrEmpty(ViewBag.Article.ImageDetail))
-                {
-                    <a style="cursor:pointer;" href="@ViewBag.rewrite">
-                        <img src="@ViewBag.Article.ImageDetail.750.320.cache" class="img-responsive" alt="@ViewBag.Article.Title">
-                    </a>
-                }
+                <a style="cursor:pointer;" href="@urlLink">
+                    <img src="@Model.ArtHot.ImageDetail" style="width: 750px; height: 320px" class="img-responsive" alt="@Model.ArtHot.Title">
+                </a>
             </div>
-            <span style="    font-size: 24px;"><a class="text_tieude_ud" style="cursor:pointer;" href="@ViewBag.rewrite" title="@ViewBag.Article.Title">@ViewBag.Article.Title</a></span>
-            <em style="width: 50%; float: left">@ViewBag.Article.PublishDate.ToString("dd/MM/yyyy")</em>
+            <span style="font-size: 24px;"><a class="text_tieude_ud" style="cursor:pointer;" href="@urlLink" title="@Model.ArtHot.Title">@Model.ArtHot.Title</a></span>
+            <em style="width: 50%; float: left">@Model.ArtHot.PublishDate.ToString("dd/MM/yyyy")</em>
             <ul class="list_binhchon_luon" style="width: 50%; float: right">
 
-                <li><img src="@System.Configuration.ConfigurationManager.AppSettings["URL_ROOT"]images/icon_view.png" alt="">@ViewBag.Article.CountView Xem</li>
+                <li><img src="images/icon_view.png" alt="">@Model.ArtHot.CountView Xem</li>
             </ul>
             <p>
-                @Html.Raw(ViewBag.Article.Description)
+                @Html.Raw(Model.ArtHot.Description)
             </p>
         }
     </div>
@@ -42,12 +43,12 @@
     </div>
     <div class="box_noidung_trai">
         <div class="row">
-            @if (ViewBag.list_video != null && ViewBag.list_video.Count > 0)
+            @if (Model != null && Model.ListVideo != null)
             {
-                for (int i = 0; i < ViewBag.list_video.Count; i++)
+                for (int i = 0; i < Model.ListVideo.Count; i++)
                 {
-                    var item = ViewBag.list_video[i];
-                    string rwtitle = rw.ReWrite(item.Title, item.ArticleID);
+                    var item = Model.ListVideo[i];
+                    var urlLinkVideo = UrlRoot + rw.UrlReMark(item.Title.ToLower()) + "-post" + item.ArticleID.ToString();
                     if (i % 2 == 0)
                     {
                         @: <div class="col-lg-6 col-md-6 col-sx-8 col-sm-12">
@@ -55,14 +56,14 @@
 
                         <div class="box_img_link_tintuc">
                             <div class="box_img_tin_tuc">
-                                <a href="@rwtitle" title="@item.Title"><img src="@item.Image.360.220.cache" style="width: 360px; height: 220px" alt=""></a>
+                                <a href="@urlLinkVideo" title="@item.Title"><img src="@item.Image" style="width: 360px; height: 220px" alt=""></a>
                             </div>
-                            <a class="text_tieude_ud" href="@rwtitle" title="@item.Title">@W1400.Utility.DBCommon.SubString(item.Title, 85)</a>
+                            <a class="text_tieude_ud" href="@urlLinkVideo" title="@item.Title">@item.Title</a>
                             <span>@item.PublishDate.ToString("dd/MM/yyyy")</span>
-                            <p title="@item.Description" style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; ">@W1400.Utility.DBCommon.SubString(item.Description, 150)</p>
+                            <p title="@item.Description" style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; ">@item.Description</p>
                         </div>
 
-                        if (i % 2 != 0 || i == ViewBag.list_video.Count - 1)
+                        if (i % 2 != 0 || i == Model.ListVideo.Count - 1)
                         {
                         @: </div>
                     }
@@ -71,19 +72,19 @@
         </div>
     </div>
     <ul class="list_xemthem">
-        <li><a href="@System.Configuration.ConfigurationManager.AppSettings["URL_ROOT"]video">Xem thêm</a></li>
+        <li><a href="video">Xem thêm</a></li>
     </ul>
     <div class="tieude_noidung_trai">
         ALBUM ẢNH
     </div>
     <div class="box_noidung_trai">
         <div class="row">
-            @if (ViewBag.list_album != null && ViewBag.list_album.Count > 0)
+            @if (Model != null && Model.ListAlbum != null)
             {
-                for (int i = 0; i < ViewBag.list_album.Count; i++)
+                for (int i = 0; i < Model.ListAlbum.Count; i++)
                 {
-                    var item = ViewBag.list_album[i];
-                    string rwtitle = rw.ReWrite(item.Title, item.ArticleID);
+                    var item = Model.ListAlbum[i];
+                    var urlLinkAlbum = UrlRoot + rw.UrlReMark(item.Title.ToLower()) + "-post" + item.ArticleID.ToString();
                     if (i % 2 == 0)
                     {
                         @: <div class="col-lg-6 col-md-6 col-sx-8 col-sm-12">
@@ -91,14 +92,14 @@
 
                         <div class="box_img_link_tintuc">
                             <div class="box_img_tin_tuc">
-                                <a href="@rwtitle" title="@item.Title"><img src="@item.Image.360.220.cache" style="width: 360px; height: 220px" alt=""></a>
+                                <a href="@urlLinkAlbum" title="@item.Title"><img src="@item.Image" style="width: 360px; height: 220px" alt=""></a>
                             </div>
-                            <a class="text_tieude_ud" href="@rwtitle" title="@item.Title" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">@W1400.Utility.DBCommon.SubString(item.Title, 85)</a>
+                            <a class="text_tieude_ud" href="@urlLinkAlbum" title="@item.Title" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">@item.Title</a>
                             <span>@item.PublishDate.ToString("dd/MM/yyyy")</span>
-                            <p title="@item.Description" style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">@W1400.Utility.DBCommon.SubString(item.Description, 150)</p>
+                            <p title="@item.Description" style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">@item.Description</p>
                         </div>
 
-                        if (i % 2 != 0 || i == ViewBag.list_album.Count - 1)
+                        if (i % 2 != 0 || i == Model.ListAlbum.Count - 1)
                         {
                         @: </div>
                     }
@@ -107,6 +108,6 @@
         </div>
     </div>
     <ul class="list_xemthem">
-        <li><a href="@System.Configuration.ConfigurationManager.AppSettings["URL_ROOT"]album-anh">Xem thêm</a></li>
+        <li><a href="album-anh">Xem thêm</a></li>
     </ul>
 </div>

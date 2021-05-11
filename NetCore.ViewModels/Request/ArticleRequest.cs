@@ -18,5 +18,6 @@ namespace NetCore.ViewModels.Request
         public int PageSize { get; set; }
         public int GetChild { get; set; }
         public int Status { get; set; }
+        public int ImageID { get; set; }
     }
 }

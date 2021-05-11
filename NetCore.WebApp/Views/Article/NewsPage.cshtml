@@ -12,7 +12,7 @@
 
     @if (Model != null && Model.ArtHot != null)
     {
-        var urlLink = UrlRoot + rw.VietnameseNoMark(Model.ArtHot.Title.ToLower()) + "-post" + Model.ArtHot.ArticleID.ToString();
+        var urlLink = UrlRoot + rw.UrlReMark(Model.ArtHot.Title.ToLower()) + "-post" + Model.ArtHot.ArticleID.ToString();
         <div class="noidung_chitiet_tintuc margin_bottom_30px">
             <div class="box_img_chitiet_tin">
                 @if (!string.IsNullOrEmpty(Model.ArtHot.ImageDetail))

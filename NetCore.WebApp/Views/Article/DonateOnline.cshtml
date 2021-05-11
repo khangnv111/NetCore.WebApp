@@ -1,0 +1,70 @@
+﻿@model DonateOnlineModel
+@using Lib;
+@{
+    var UrlRoot = ViewBag.UrlRoot;
+    var rw = new Nomark();
+}
+<div class="col-lg-8 col-md-8 col-sx-8 col-sm-12">
+
+    <div class="tieude_noidung_trai">
+        ủng hộ trực tuyến
+    </div>
+    @if (Model != null && Model.ListArt != null)
+    {
+        <div id="list_article">
+            @foreach (var item in Model.ListArt)
+            {
+                var urlLink = UrlRoot + rw.UrlReMark(item.Title.ToLower()) + "-post" + item.ArticleID.ToString();
+
+                <div class="box_all_ketqua_timkiem">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sx-12 col-sm-12">
+                            <div class="box_img_timkiem"><a href="@urlLink"><img src="@item.Image" alt="@item.Title" style="border-style: solid; border-width: 1px; border-color: #02a7e1; width: 360px; height: 220px"></a></div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sx-12 col-sm-12">
+                            <div class="box_info_timkiem">
+                                <a href="@urlLink">@item.Title</a>
+                                <em>@item.CreateDate.ToString("dd/MM/yyyy HH:mm")</em>
+                                <p>@item.Description</p>
+                                <a class="btn_ungho_tructuyen" href="@item.MetaData"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+
+        @if (Model.TotalPage > 1)
+        {
+            int page = Model.Page; //page hien tai
+            int total_page = Model.TotalPage; //tong so page
+            int prePage = Model.Page - 1;
+            int nextPage = Model.Page + 1;
+
+            <ul class="list_phantrang_chitiet margin_top_bottom">
+                <li @if (Model.Page == 1) { prePage = Model.Page; @: class="disabled"
+                    }><a href="javascript:;" onclick="PageOnlineSupport(@prePage)"></a></li>
+                @for (int i = Model.Page - 2; i <= Model.Page + 2; i++)
+                {
+                    if (i > 0 && i <= total_page)
+                    {
+                        if (i == Model.Page)
+                        {
+                            <li style="background-color: #02a7e1;"><a style="color: #fff;" href="javascript:;" onclick="PageOnlineSupport(@i)">@i</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="javascript:;" onclick="PageOnlineSupport(@i)">@i</a></li>
+                        }
+                    }
+                }
+
+                <li @if (Model.Page == total_page) { nextPage = Model.Page; @: class="disabled"
+                    }><a href="javascript:;" onclick="PageOnlineSupport(@nextPage)"></a></li>
+
+            </ul>
+        }
+    }
+
+</div>

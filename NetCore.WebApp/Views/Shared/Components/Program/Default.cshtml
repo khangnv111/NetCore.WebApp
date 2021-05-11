@@ -10,7 +10,7 @@
     <div class="tieude_noidung">chương trình đang thực hiện</div>
     @foreach (var item in Model)
     {
-        var urlLink = urlRoot + rw.VietnameseNoMark(item.EventName.ToLower()) + "-post" + item.EventID.ToString();
+        var urlLink = urlRoot + rw.UrlReMark(item.EventName.ToLower()) + "-post" + item.EventID.ToString();
         <a style="cursor:pointer" href="@urlLink">
             <div class="box_chuong_trinh">
                 <div class="box_img_chuongtrinh"><img class="img-responsive" src="@item.Image"></div>

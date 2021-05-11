@@ -32,4 +32,19 @@ namespace NetCore.ViewModels
 
         public string Author { get; set; }
     }
+
+    public class ArticleImage
+    {
+        public int STT { get; set; }
+        public int ImageID { get; set; }
+        public int ArticleID { get; set; }
+        public string ArticleTitle { get; set; }
+        public int MenuID { get; set; }
+        public string MenuName { get; set; }
+        public string FilePath { get; set; }
+        public int Status { get; set; }
+        public DateTime CreateDate { get; set; }
+        public string CreateUser { get; set; }
+        public string Description { get; set; }
+    }
 }

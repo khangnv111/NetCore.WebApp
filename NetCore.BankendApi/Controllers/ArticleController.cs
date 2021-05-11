@@ -41,5 +41,15 @@ namespace NetCore.BankendApi.Controllers
                 request.UrlRedirect, request.Tags, request.isHot, request.Page, request.PageSize, out totalRow);
             return Ok(new { TotalRow = totalRow , Items = list});
         }
+
+        [HttpGet]
+        [Route("image/get")]
+        public IActionResult GetImageList([FromQuery] ArticleRequest req)
+        {
+            int totalRow = 0;
+            var list = _articleAccess.SP_ArticleImage_GetList(req.TopRow, req.ImageID, req.ArticleID, req.Status, req.Page, req.PageSize, out totalRow);
+            return Ok(new { TotalRow = totalRow, Items = list });
+        }
+
     }
 }

@@ -3,9 +3,9 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
  table{border-collapse: collapse;}
  a:hover, a:active, a:focus {text-decoration: none;outline: none;}
 .clear{clear: both;}
-@font-face{src:url("/css/fonts/MYRIADPRO-BOLD.otf");font-family: 'MYRIADPRO-BOLD';}
-@font-face{src:url("/css/fonts/MYRIADPRO-REGULAR.otf");font-family: 'MYRIADPRO-REGULAR';}
-@font-face{src:url("/css/fonts/MYRIADPRO-SEMIBOLD.otf");font-family: 'MYRIADPRO-SEMIBOLD';}
+@font-face{src:url("/fonts/MYRIADPRO-BOLD.otf");font-family: 'MYRIADPRO-BOLD';}
+@font-face{src:url("/fonts/MYRIADPRO-REGULAR.otf");font-family: 'MYRIADPRO-REGULAR';}
+@font-face{src:url("/fonts/MYRIADPRO-SEMIBOLD.otf");font-family: 'MYRIADPRO-SEMIBOLD';}
 body{overflow-x: hidden;font-family: 'MYRIADPRO-REGULAR';line-height: 1.5;}
 .box_slide{position: relative;margin-bottom: 25px;display: block;}
 .box_slide .owl-controls{position: absolute;bottom: 0;left: 0;width: 100%;text-align: center;}
