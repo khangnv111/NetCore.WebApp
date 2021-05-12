@@ -2,6 +2,10 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
+$("a[href='#top']").click(function () {
+    $("html, body").animate({ scrollTop: 1000 }, "slow");
+    return false;
+});
 
 var UrlRoot = window.location.origin;
 
@@ -15,16 +19,16 @@ function PageOnlineSupport(CurrentPage) {
         },
         dataType: "html",
         success: function (data) {
+            $('#home').addClass('active');
             $("#list_article").html(data);
         },
     });
 };
 
 function PagingRelate(Id, page) {
-    console.log("comme here....");
     $.ajax({
         type: "GET",
-        url: UrlRoot + 'Article/NewsRelation',
+        url: UrlRoot + '/Article/NewsRelation',
         cache: false,
         data: {
             Id: Id,
@@ -32,7 +36,6 @@ function PagingRelate(Id, page) {
         },
         dataType: "html",
         success: function (data) {
-console.log("data: ", data);
             $("#show_relationArticle").html(data);
         },
     });

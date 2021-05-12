@@ -61,18 +61,18 @@ namespace NetCore.WebApp.Controllers
 
         public async Task<IActionResult> NewsRelation(int Id, int Page)
         {
-            string url = _appSetting.UrlApi + "api/article/relation/getst?TopRow=10&ArticleID=" + Id + "&Page=1&PageSize=2";
+            string url = _appSetting.UrlApi + "api/article/relation/get?TopRow=10&ArticleID=" + Id + "&Page=1&PageSize=2";
             var list = await ApiService.GetAsync<RootObject<ArticleModel>>(url);
             var _data = new DonateOnlineModel();
             _data.Page = Page;
             _data.Total = list.TotalRow;
             _data.ListArt = list.Items;
-            _data.Total = (int)Math.Ceiling((decimal)(list.TotalRow / 2));
+            _data.TotalPage = (int)Math.Ceiling((decimal)(list.TotalRow / 2));
 
             ViewBag.Id = Id;
             ViewBag.UrlRoot = _appSetting.UrlRoot;
 
-            return View(_data);
+            return PartialView(_data);
         }
         #endregion
 
