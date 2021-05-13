@@ -23,6 +23,7 @@ namespace NetCore.BankendApi.Controllers
             _appSetting = appSetting.Value;
         }
 
+        #region Web
         [HttpGet]
         [Route("menu/get")]
         public IActionResult MenuGetList([FromQuery] ArticleRequest request)
@@ -39,7 +40,7 @@ namespace NetCore.BankendApi.Controllers
             int totalRow = 0;
             var list = _articleAccess.SP_Article_GetList_Web(request.TopRow, request.ArticleID, request.Title, request.MenuID,
                 request.UrlRedirect, request.Tags, request.isHot, request.Page, request.PageSize, out totalRow);
-            return Ok(new { TotalRow = totalRow , Items = list});
+            return Ok(new { TotalRow = totalRow, Items = list });
         }
 
         [HttpGet]
@@ -59,6 +60,17 @@ namespace NetCore.BankendApi.Controllers
             var list = _articleAccess.SP_Article_GetListSameMenu_Web(request.TopRow, request.ArticleID, request.Page, request.PageSize, out totalRow);
             return Ok(new { TotalRow = totalRow, Items = list });
         }
+        #endregion
 
+        #region CMS
+        [HttpGet]
+        [Route("cms/get")]
+        public IActionResult CMSGetList([FromQuery] ArticleRequest data)
+        {
+            int totalRow = 0;
+            var list = _articleAccess.SP_Article_GetList_CMS(data.ArticleID, data.Title, data.MenuID, data.Tags, data.isHot, data.Status, data.FromDate, data.ToDate, data.Page, data.PageSize, out totalRow);
+            return Ok(new { TotalRow = totalRow, Items = list });
+        }
+        #endregion
     }
 }

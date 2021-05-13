@@ -23,6 +23,7 @@ namespace NetCore.BankendApi.DataAccess
             db = new DBHelper(_myConnect.DataConnection);
         }
 
+        #region Web
         public List<MenuModel> SP_Menu_GetList(string MenuIDs, Int16 GetChild, Int16 Status, out int TotalRow)
         {
             TotalRow = 0;
@@ -134,5 +135,48 @@ namespace NetCore.BankendApi.DataAccess
                 return new List<ArticleModel>();
             }
         }
+        #endregion
+
+        #region CMS
+        public List<ArticleModel> SP_Article_GetList_CMS(int ArticleID, string Title, int MenuID, string Tags, int isHot, int Status, string FromDate, string ToDate, int Page, int PageSize, out int TotalRow)
+        {
+            try
+            {
+                var pars = new SqlParameter[11];
+                pars[0] = new SqlParameter("@ArticleID", ArticleID);
+                pars[1] = new SqlParameter("@Title", Title);
+                pars[2] = new SqlParameter("@MenuID", MenuID);
+                pars[3] = new SqlParameter("@Tags", Tags);
+                if (isHot == -1)
+                {
+                    pars[4] = new SqlParameter("@isHot", DBNull.Value);
+                }
+                else if (isHot == 0)
+                {
+                    pars[4] = new SqlParameter("@isHot", false);
+                }
+                else
+                {
+                    pars[4] = new SqlParameter("@isHot", true);
+                }
+                pars[5] = new SqlParameter("@Status", Status);
+                pars[6] = new SqlParameter("@FromDate", FromDate);
+                pars[7] = new SqlParameter("@ToDate", ToDate);
+                pars[8] = new SqlParameter("@Page", Page);
+                pars[9] = new SqlParameter("@PageSize", PageSize);
+                pars[10] = new SqlParameter("@TotalRow", SqlDbType.Int) { Direction = ParameterDirection.Output };
+                var list = db.GetListSP<ArticleModel>("SP_Article_GetList_CMS", pars);
+                TotalRow = Convert.ToInt32(pars[10].Value);
+                return list;
+            }
+            catch (Exception ex)
+            {
+                NLogLogger.Exception(ex);
+                TotalRow = 0;
+                return new List<ArticleModel>();
+            }
+
+        }
+        #endregion
     }
 }

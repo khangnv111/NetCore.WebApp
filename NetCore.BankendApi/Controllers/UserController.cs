@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NetCore.BankendApi.DataAccess;
 using NetCore.BankendApi.Service;
@@ -22,6 +23,7 @@ namespace NetCore.BankendApi.Controllers
             _jwtAuth = jwtAuth;
         }
 
+        #region Login
         [HttpPost]
         [Route("login")]
         public IActionResult Login([FromBody] UserRequest data)
@@ -45,6 +47,15 @@ namespace NetCore.BankendApi.Controllers
 
 
             return Ok(new { UserName = data.Username, TokenKey = token });
+        }
+        #endregion
+
+        [HttpGet]
+        [Authorize]
+        public IActionResult GetListRole()
+        {
+            string[] role = { "admin", "user", "table", "form", "list", "profile", "system" };
+            return Ok(role);
         }
 
         private string ipAddress()
