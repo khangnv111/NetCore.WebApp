@@ -101,7 +101,7 @@ namespace NetCore.WebApp.Controllers
         #endregion
 
         #region Ủng hộ trực tuyến
-        public async Task<IActionResult> DonateOnline(int Page = 1, int PageSize = 2)
+        public async Task<IActionResult> DonateOnline(int Page = 1, int PageSize = 10)
         {
             string url = _appSetting.UrlApi + "api/article/get-list?TopRow=1000&MenuID=0&UrlRedirect=ung-ho-truc-tuyen&isHot=-1&Page=" + Page + "&PageSize=" + PageSize;
             var list = await ApiService.GetAsync<RootObject<ArticleModel>>(url);
@@ -119,7 +119,7 @@ namespace NetCore.WebApp.Controllers
             return View(data);
         }
 
-        public async Task<IActionResult> DonateOnlinePart(int Page = 1, int PageSize = 2)
+        public async Task<IActionResult> DonateOnlinePart(int Page = 1, int PageSize = 10)
         {
             string url = _appSetting.UrlApi + "api/article/get-list?TopRow=1000&MenuID=0&UrlRedirect=ung-ho-truc-tuyen&isHot=-1&Page=" + Page + "&PageSize=" + PageSize;
             var list = await ApiService.GetAsync<RootObject<ArticleModel>>(url);

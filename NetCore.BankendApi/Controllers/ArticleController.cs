@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using NetCore.BankendApi.DataAccess;
+using NetCore.BankendApi.Service;
 using NetCore.ViewModels;
 using NetCore.ViewModels.Request;
 using System;
@@ -17,10 +19,12 @@ namespace NetCore.BankendApi.Controllers
     {
         private readonly ArticleAccess _articleAccess;
         private readonly AppSetting _appSetting;
-        public ArticleController(ArticleAccess articleAccess, IOptions<AppSetting> appSetting)
+        private readonly JwtAuth _jwtAuth;
+        public ArticleController(ArticleAccess articleAccess, IOptions<AppSetting> appSetting, JwtAuth jwtAuth)
         {
             _articleAccess = articleAccess;
             _appSetting = appSetting.Value;
+            _jwtAuth = jwtAuth;
         }
 
         #region Web
@@ -64,12 +68,36 @@ namespace NetCore.BankendApi.Controllers
 
         #region CMS
         [HttpGet]
+        [Authorize]
         [Route("cms/get")]
         public IActionResult CMSGetList([FromQuery] ArticleRequest data)
         {
             int totalRow = 0;
             var list = _articleAccess.SP_Article_GetList_CMS(data.ArticleID, data.Title, data.MenuID, data.Tags, data.isHot, data.Status, data.FromDate, data.ToDate, data.Page, data.PageSize, out totalRow);
             return Ok(new { TotalRow = totalRow, Items = list });
+        }
+
+        [HttpPost("cms/insert-update")]
+        [Authorize]
+        public IActionResult InsertUpdate([FromBody] ArticleModel data)
+        {
+            data.CreateUser = _jwtAuth.UserName;
+            var res = _articleAccess.SP_Article_INUP_CMS(data);
+
+            if(res > 0)
+            {
+                return Ok("Thành công");
+            }
+            else if (res == -55)
+            {
+                return BadRequest("Đã có 5 bài hot");
+            }
+            else if (res == -600)
+            {
+                return BadRequest("Đầu vào không hợp lệ");
+            }
+            else
+                return BadRequest("Không thành công");
         }
         #endregion
     }

@@ -177,6 +177,38 @@ namespace NetCore.BankendApi.DataAccess
             }
 
         }
+
+        public int SP_Article_INUP_CMS(ArticleModel article)
+        {
+            try
+            {
+                var pars = new SqlParameter[16];
+                pars[0] = new SqlParameter("@ArticleID", article.ArticleID);
+                pars[1] = new SqlParameter("@Title", article.Title);
+                pars[2] = new SqlParameter("@MenuID", article.MenuID);
+                pars[3] = new SqlParameter("@Description", article.Description);
+                pars[4] = new SqlParameter("@Detail", article.Detail);
+                pars[5] = new SqlParameter("@Image", article.Image);
+                pars[6] = new SqlParameter("@ImageDetail", article.ImageDetail);
+                pars[7] = new SqlParameter("@ImageHot", article.ImageHot);
+                pars[8] = new SqlParameter("@MetaData", article.MetaData);
+                pars[9] = new SqlParameter("@BottomDesc", article.BottomDesc);
+                pars[10] = new SqlParameter("@Tags", article.Tags);
+                pars[11] = new SqlParameter("@PublishDate", article.PublishDate);
+                pars[12] = new SqlParameter("@isHot", article.isHot);
+                pars[13] = new SqlParameter("@Author", article.Author);
+                pars[14] = new SqlParameter("@CreateUser", article.CreateUser);
+                pars[15] = new SqlParameter("@ResponseStatus", DbType.Int32) { Direction = ParameterDirection.Output };
+
+                db.ExecuteNonQuerySP("SP_Article_INUP_CMS", pars);
+                return Convert.ToInt32(pars[15].Value);
+            }
+            catch (Exception ex)
+            {
+                NLogLogger.Exception(ex);
+                return -99;
+            }
+        }
         #endregion
     }
 }
