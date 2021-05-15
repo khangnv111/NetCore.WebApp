@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Lib;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -8,6 +9,7 @@ using NetCore.ViewModels;
 using NetCore.ViewModels.Request;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -79,24 +81,31 @@ namespace NetCore.BankendApi.Controllers
 
         [HttpPost("cms/insert-update")]
         [Authorize]
-        public IActionResult InsertUpdate([FromBody] ArticleModel data)
+        public async Task<IActionResult> InsertUpdate(ArticleModel data)
         {
-            data.CreateUser = _jwtAuth.UserName;
-            var res = _articleAccess.SP_Article_INUP_CMS(data);
+            //var files = HttpContext.Request.Form.Files;
+            var folderName = Path.Combine("images");
 
-            if(res > 0)
-            {
-                return Ok("Thành công");
-            }
-            else if (res == -55)
-            {
-                return BadRequest("Đã có 5 bài hot");
-            }
-            else if (res == -600)
-            {
-                return BadRequest("Đầu vào không hợp lệ");
-            }
-            else
+            string url = _appSetting.UrlWeb + "api/web/save-file";
+
+            var resss = await ApiService.PostAsync<string>(url, data);
+
+            data.CreateUser = _jwtAuth.UserName;
+            //var res = _articleAccess.SP_Article_INUP_CMS(data);
+
+            //if(res > 0)
+            //{
+            //    return Ok("Thành công");
+            //}
+            //else if (res == -55)
+            //{
+            //    return BadRequest("Đã có 5 bài hot");
+            //}
+            //else if (res == -600)
+            //{
+            //    return BadRequest("Đầu vào không hợp lệ");
+            //}
+            //else
                 return BadRequest("Không thành công");
         }
         #endregion

@@ -12,5 +12,6 @@ namespace NetCore.ViewModels
     {
         public int TotalRow { get; set; }
         public List<T> Items { get; set; }
+        public T link { get; set; }
     }
 }

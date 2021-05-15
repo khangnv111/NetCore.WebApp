@@ -14,6 +14,7 @@ namespace NetCore.ViewModels
     {
         public string UrlRoot { get; set; }
         public string UrlApi { get; set; }
+        public string UrlWeb { get; set; }
         public string JwtKey { get; set; }
         public int TokenExpire { get; set; }
     }

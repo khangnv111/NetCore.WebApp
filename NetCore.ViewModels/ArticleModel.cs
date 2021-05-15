@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -31,6 +32,7 @@ namespace NetCore.ViewModels
         public int OrderHot { get; set; }
 
         public string Author { get; set; }
+        public string FileName { get; set; }
     }
 
     public class ArticleImage
