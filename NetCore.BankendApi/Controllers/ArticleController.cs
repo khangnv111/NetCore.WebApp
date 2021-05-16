@@ -7,6 +7,7 @@ using NetCore.BankendApi.DataAccess;
 using NetCore.BankendApi.Service;
 using NetCore.ViewModels;
 using NetCore.ViewModels.Request;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -81,31 +82,36 @@ namespace NetCore.BankendApi.Controllers
 
         [HttpPost("cms/insert-update")]
         [Authorize]
-        public async Task<IActionResult> InsertUpdate(ArticleModel data)
+        public async Task<IActionResult> InsertUpdate([FromForm]ArticleModel data)
         {
-            //var files = HttpContext.Request.Form.Files;
-            var folderName = Path.Combine("images");
+            var file = data.fileUpload;
 
-            string url = _appSetting.UrlWeb + "api/web/save-file";
+            if(file != null && file.Length > 0)
+            {
+                string url = _appSetting.UrlWeb + "api/web/save-file";
 
-            var resss = await ApiService.PostAsync<string>(url, data);
+                var resss = await ApiService.PostAsyncWithFile<RootObject<dynamic>>(url, JsonConvert.SerializeObject(data), file);
+                var link = resss.link;
+                data.Image = link;
+            }
+            
 
             data.CreateUser = _jwtAuth.UserName;
-            //var res = _articleAccess.SP_Article_INUP_CMS(data);
+            var res = _articleAccess.SP_Article_INUP_CMS(data);
 
-            //if(res > 0)
-            //{
-            //    return Ok("Thành công");
-            //}
-            //else if (res == -55)
-            //{
-            //    return BadRequest("Đã có 5 bài hot");
-            //}
-            //else if (res == -600)
-            //{
-            //    return BadRequest("Đầu vào không hợp lệ");
-            //}
-            //else
+            if (res > 0)
+            {
+                return Ok("Thành công");
+            }
+            else if (res == -55)
+            {
+                return BadRequest("Đã có 5 bài hot");
+            }
+            else if (res == -600)
+            {
+                return BadRequest("Đầu vào không hợp lệ");
+            }
+            else
                 return BadRequest("Không thành công");
         }
         #endregion

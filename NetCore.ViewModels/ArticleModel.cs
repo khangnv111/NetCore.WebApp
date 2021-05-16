@@ -33,6 +33,7 @@ namespace NetCore.ViewModels
 
         public string Author { get; set; }
         public string FileName { get; set; }
+        public IFormFile fileUpload { get; set; }
     }
 
     public class ArticleImage

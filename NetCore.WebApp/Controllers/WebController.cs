@@ -24,20 +24,26 @@ namespace NetCore.WebApp.Controllers
 
         [HttpPost]
         [Route("save-file")]
-        public IActionResult SaveImage(ArticleModel data)
+        public IActionResult SaveImage([FromForm]ArticleModel data)
         {
             var folderName = Path.Combine("wwwroot", "media");
             var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+            var file = data.fileUpload;
 
-            var imagePath = pathToSave + "/" + data.FileName;
+            var imagePath = pathToSave + "/" + file.FileName;
 
-            byte[] bytes = Convert.FromBase64String(data.Image.Split(',')[1]);
-            using (FileStream stream = new FileStream(imagePath, FileMode.Create))
+            using (var stream = new FileStream(imagePath, FileMode.Create))
             {
-                stream.Write(bytes, 0, bytes.Length);
-                stream.Flush();
+                file.CopyTo(stream);
             }
-            string link = _appSetting.UrlRoot + "media/" + data.FileName;
+
+            //byte[] bytes = Convert.FromBase64String(data.Image.Split(',')[1]);
+            //using (FileStream stream = new FileStream(imagePath, FileMode.Create))
+            //{
+            //    stream.Write(bytes, 0, bytes.Length);
+            //    stream.Flush();
+            //}
+            string link = _appSetting.UrlRoot + "media/" + file.FileName;
 
             return Ok(new { link = link});
         }
