@@ -114,6 +114,29 @@ namespace NetCore.BankendApi.Controllers
             else
                 return BadRequest("Không thành công");
         }
+
+        [HttpPost("cms/delete")]
+        [Authorize]
+        public IActionResult Delete(ArticleModel data)
+        {
+            
+            var res = _articleAccess.SP_Article_UpdateStatus_CMS(data.ArticleID, data.Status, _jwtAuth.UserName);
+
+            if (res > 0)
+            {
+                return Ok("Thành công");
+            }
+            else if (res == -55)
+            {
+                return BadRequest("Đã có 5 bài hot");
+            }
+            else if (res == -600)
+            {
+                return BadRequest("Đầu vào không hợp lệ");
+            }
+            else
+                return BadRequest("Không thành công");
+        }
         #endregion
     }
 }

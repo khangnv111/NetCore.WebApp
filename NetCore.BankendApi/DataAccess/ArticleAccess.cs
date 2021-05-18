@@ -209,6 +209,26 @@ namespace NetCore.BankendApi.DataAccess
                 return -99;
             }
         }
+
+        public int SP_Article_UpdateStatus_CMS(int ArticleID, int Status, string CreateUser)
+        {
+            try
+            {
+                var pars = new SqlParameter[4];
+                pars[0] = new SqlParameter("@ArticleID", ArticleID);
+                pars[1] = new SqlParameter("@Status", Status);
+                pars[2] = new SqlParameter("@CreateUser", CreateUser);
+                pars[3] = new SqlParameter("@ResponseStatus", DbType.Int32) { Direction = ParameterDirection.Output };
+
+                db.ExecuteNonQuerySP("SP_Article_UpdateStatus_CMS", pars);
+                return Convert.ToInt32(pars[3].Value);
+            }
+            catch (Exception ex)
+            {
+                NLogLogger.Exception(ex);
+                return -99;
+            }
+        }
         #endregion
     }
 }
