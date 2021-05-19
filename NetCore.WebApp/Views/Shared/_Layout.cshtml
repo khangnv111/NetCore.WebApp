@@ -37,6 +37,9 @@
         </nav>
     </div>
     <div class="noidung_site">
+        <div>
+
+        </div>
         <div class="container">
 
             @await Component.InvokeAsync("Advert")
@@ -49,7 +52,7 @@
 
                     @await Component.InvokeAsync("Program")
 
-                    <div class="box_gopy" id="gopy">
+                    @*<div class="box_gopy" id="gopy">
                         <span>gửi thư góp ý</span>
                         <ul>
                             <li><input type="text" id="Email" placeholder="Nhập email"></li>
@@ -57,20 +60,13 @@
                         </ul>
                         <textarea placeholder="Nhập nội dung" id="Content"></textarea>
                         <a href="javascript:;" onclick="SendSuggest()">Gửi góp ý</a>
+                    </div>*@
+                    <div style="margin-top: 10px">
+                        <img src="~/images/pic7.jpg" style="max-width: 100%" />
                     </div>
-
-                    <select class="lien_ket_ngoai" id="IdLink" onchange="GoToLink()">
-                        <option value="#">Link liên kết</option>
-                        <option value="http://www.mic.gov.vn">Bộ Thông tin Truyền thông</option>
-                        <option value="http://www.redcross.org.vn">Hội chữ thập đỏ VN</option>
-                        <option value="http://vava.org.vn">Hội nạn nhân da cam</option>
-                        <option value="http://www.mattran.org.vn">UB TƯ MTTQ VN</option>
-                        <option value="http://nhandaovtv.vn">Truyền hình nhân đạo</option>
-                        <option value="http://www.go.vn">Mạng xã hội Việt Nam </option>
-                        <option value="http://ngaymaituoisang.vn/">Quỹ Hỗ trợ bệnh nhân ung thư </option>
-                        <option value="http://trianlietsi.vn">Hội Hỗ trợ gia đình liệt sĩ Việt Nam </option>
-                        <option value="http://tamlongvang.laodong.com.vn/">Quỹ Tấm Lòng Vàng báo Lao Động</option>
-                    </select>
+                    <div style="margin-top: 10px">
+                        <img src="~/images/pic8.jpg" style="max-width: 100%" />
+                    </div>
                 </div>
             </div>
         </div>
