@@ -72,6 +72,11 @@
         <li><a href="tin-tuc">Xem thêm</a></li>
     </ul>
 
+    @*<div class="item">
+        <a href="#">
+            <img src="~/images/srv_thumb.jpg" style="width: 100%" />
+        </a>
+    </div>*@
 
     <div class="tieude_noidung_trai">
         video/ảnh
@@ -84,7 +89,7 @@
     <div class="box_noidung_trai">
         <div class="row list-img-index">
             @*@Html.Action("VideoPartial", "Home")*@
-            @if(Model != null)
+            @if (Model != null)
             {
                 for (int i = 0; i < Model.ListVideo.Count; i++)
                 {
@@ -94,21 +99,21 @@
                     if (i % 2 == 0)
                     {
                         @: <div class="col-lg-6 col-md-6 col-sx-8 col-sm-12">
-                    }
+                        }
 
-                    <div class="box_img_link_tintuc">
-                        <div class="box_img_tin_tuc">
-                            <a href="@rwtitle">
-                                <img src="@item.Image" alt="" title="@item.Title" style="width: 360px; height:220px ">
-                            </a>
+                        <div class="box_img_link_tintuc">
+                            <div class="box_img_tin_tuc">
+                                <a href="@rwtitle">
+                                    <img src="@item.Image" alt="" title="@item.Title" style="width: 360px; height:220px ">
+                                </a>
+                            </div>
+                            <a class="text_tieude_ud" href="@rwtitle" title="@item.Title" style="display: -webkit-box; -webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;">@item.Title</a>
+                            <span>@item.PublishDate.ToString("dd/MM/yyyy HH:mm")</span>
+                            <p title="@item.Description" style="display: -webkit-box; -webkit-line-clamp: 3;-webkit-box-orient: vertical;overflow: hidden;">@item.Description</p>
                         </div>
-                        <a class="text_tieude_ud" href="@rwtitle" title="@item.Title" style="display: -webkit-box; -webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;">@item.Title</a>
-                        <span>@item.PublishDate.ToString("dd/MM/yyyy HH:mm")</span>
-                        <p title="@item.Description" style="display: -webkit-box; -webkit-line-clamp: 3;-webkit-box-orient: vertical;overflow: hidden;">@item.Description</p>
-                    </div>
 
-                    if (i % 2 != 0 || i == ViewBag.Count - 1)
-                    {
+                        if (i % 2 != 0 || i == ViewBag.Count - 1)
+                        {
                         @: </div>
                     }
                 }

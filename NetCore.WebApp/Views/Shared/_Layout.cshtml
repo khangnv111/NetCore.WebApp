@@ -17,7 +17,7 @@
 <body>
 
     <a class="scrollup" href="#top"></a>
-    <div class="box_header">
+    <div class="box_header" id="header">
         <nav class="navbar navbar-default">
             <div class="container">
                 <div class="navbar-header">
@@ -37,11 +37,13 @@
         </nav>
     </div>
     <div class="noidung_site">
-        <div class="advert_right" style="position: fixed; left: 0px; z-index: 9; display: none">
-            <img src="~/images/right.jpg" style="width: 100%"/>
+        <div class="advert_right" id="advert_right" style="position: fixed; left: 0px; z-index: 9; display: none">
+            <button class="btn-adv-right">x</button>
+            <img src="~/images/right.jpg" style="width: 100%" />
         </div>
         <div class="advert_left" style="position: fixed; right: 0px; z-index: 9; display: none">
-            <img src="~/images/left.gif" style="width: 100%"/>
+            <button class="btn-adv-left">x</button>
+            <img src="~/images/left.gif" style="width: 100%" />
         </div>
         <div class="container">
 
@@ -56,26 +58,26 @@
                     @await Component.InvokeAsync("Program")
 
                     @*<div class="box_gopy" id="gopy">
-                        <span>gửi thư góp ý</span>
-                        <ul>
-                            <li><input type="text" id="Email" placeholder="Nhập email"></li>
-                            <li><input type="text" id="Mobile" placeholder="Nhập số điện thoại" maxlength="15"></li>
-                        </ul>
-                        <textarea placeholder="Nhập nội dung" id="Content"></textarea>
-                        <a href="javascript:;" onclick="SendSuggest()">Gửi góp ý</a>
-                    </div>*@
+                            <span>gửi thư góp ý</span>
+                            <ul>
+                                <li><input type="text" id="Email" placeholder="Nhập email"></li>
+                                <li><input type="text" id="Mobile" placeholder="Nhập số điện thoại" maxlength="15"></li>
+                            </ul>
+                            <textarea placeholder="Nhập nội dung" id="Content"></textarea>
+                            <a href="javascript:;" onclick="SendSuggest()">Gửi góp ý</a>
+                        </div>*@
                     <div style="margin-top: 10px">
                         <img src="~/images/pic7.jpg" style="max-width: 100%" />
                     </div>
                     @*<div style="margin-top: 10px">
-                        <img src="~/images/pic8.jpg" style="max-width: 100%" />
-                    </div>*@
+                            <img src="~/images/pic8.jpg" style="max-width: 100%" />
+                        </div>*@
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="box_footer">
+    <div class="box_footer" id="footer">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-sm-12">
@@ -111,6 +113,7 @@
     <script src="~/js/lightslider.js"></script>
     <script src="~/js/utility.js"></script>
     <script src="~/js/jquery-ui.js"></script>
+    @*<script src="~/js/jquery.stickOnScroll.js"></script>*@
 
     <script src="~/js/site.js" asp-append-version="true"></script>
 

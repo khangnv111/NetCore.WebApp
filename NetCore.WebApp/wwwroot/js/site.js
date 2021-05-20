@@ -10,16 +10,33 @@ $("a[href='#top']").click(function () {
 _documentHeight = document.body.clientHeight;
 window.onload = function () {
     window.onscroll = function () {
-        var doc = document.body,
-            scrollPosition = doc.scrollTop,
-            pageSize = (doc.scrollHeight - doc.clientHeight),
-            percentageScrolled = Math.floor((scrollPosition / pageSize) * 100);
-        console.log('percentageScrolled: ', percentageScrolled, ' pageSize: ', pageSize, ' scrollPosition: ', scrollPosition)
-        if (percentageScrolled >= 50) { // if the percentage is >= 50, scroll to top
-            console.log('come here...')
+        //var doc = document.body,
+        //    scrollPosition = doc.scrollTop,
+        //    pageSize = (doc.scrollHeight - doc.clientHeight),
+        //    percentageScrolled = Math.floor((scrollPosition / pageSize) * 100);
+        //console.log('percentageScrolled: ', percentageScrolled, ' pageSize: ', pageSize, ' scrollPosition: ', scrollPosition)
+        //if (percentageScrolled >= 50) { // if the percentage is >= 50, scroll to top
+        //    console.log('come here...')
+        //}
+
+        var _height = $(".advert_right").offset().top;
+        if (_height >= 314) {
+            $(".advert_right").css("top", 0);
+            $(".advert_left").css("top", 0);
+        } else {
+            $('.advert_right').css('top', 'auto').css('left', 'auto');
+            $('.advert_left').css('top', 'auto').css('left', 'auto');
         }
     };
 };
+
+//$(function () {
+//    $("#advert_right").stickOnScroll({
+//        topOffset: $("#header").outerHeight(),
+//        footerElement: $("#footer"),
+//        bottomOffset: 0
+//    });
+//});
 
 var UrlRoot = window.location.origin;
 
