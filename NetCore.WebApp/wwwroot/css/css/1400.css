@@ -325,6 +325,43 @@ body{overflow-x: hidden;font-family: 'MYRIADPRO-REGULAR';line-height: 1.5;}
 	.scrollup{-webkit-transform: scale(0.8);-moz-transform: scale(0.8);-o-transform: scale(0.8);transform: scale(0.8);right: 10px;bottom: 50px;}
 }
 
+@media (min-width:1552px) {
+	.advert_right {
+		max-width: 190px;
+		display: block !important;
+	}
+
+	.advert_left {
+		max-width: 190px;
+		display: block !important;
+	}
+}
+
+@media (min-width:1605px) {
+	.advert_left {
+		max-width: 215px;
+		display: block !important;
+	}
+
+	.advert_right {
+		max-width: 215px;
+		display: block !important;
+	}
+}
+
+
+@media (min-width:1772px) {
+	.advert_right {
+		max-width: 300px;
+		display: block !important;
+	}
+	.advert_left {
+		max-width: 300px;
+		display: block !important;
+	}
+}
+
+
 .box_ten_tacgia{
  display: block;
  text-align: right;
@@ -332,4 +369,11 @@ body{overflow-x: hidden;font-family: 'MYRIADPRO-REGULAR';line-height: 1.5;}
  font-weight: 500;
  font-style: italic;
  margin:15px 0px;
+}
+
+.tin-tuc-moi ul>li>a{
+	font-size: 17px;
+}
+.tin-tuc-moi ul > li > a:hover {
+	color: #e31e25;
 }

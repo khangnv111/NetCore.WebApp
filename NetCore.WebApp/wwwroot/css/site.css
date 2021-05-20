@@ -22,3 +22,21 @@ select,
 textarea {
     max-width: 280px;
 }
+
+@media (min-width:1552px) {
+    .advert_right .advert_left {
+        max-width: 190px;
+    }
+}
+
+@media (min-width:1605px) {
+    .advert_right .advert_left {
+        max-width: 215px;
+    }
+}
+
+@media (min-width:1772px) {
+    .advert_right .advert_left {
+        max-width: 300px;
+    }
+}

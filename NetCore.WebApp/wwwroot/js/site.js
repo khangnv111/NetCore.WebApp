@@ -7,6 +7,20 @@ $("a[href='#top']").click(function () {
     return false;
 });
 
+_documentHeight = document.body.clientHeight;
+window.onload = function () {
+    window.onscroll = function () {
+        var doc = document.body,
+            scrollPosition = doc.scrollTop,
+            pageSize = (doc.scrollHeight - doc.clientHeight),
+            percentageScrolled = Math.floor((scrollPosition / pageSize) * 100);
+        console.log('percentageScrolled: ', percentageScrolled, ' pageSize: ', pageSize, ' scrollPosition: ', scrollPosition)
+        if (percentageScrolled >= 50) { // if the percentage is >= 50, scroll to top
+            console.log('come here...')
+        }
+    };
+};
+
 var UrlRoot = window.location.origin;
 
 function PageOnlineSupport(CurrentPage) {

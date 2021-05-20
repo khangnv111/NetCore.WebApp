@@ -2,12 +2,11 @@
 @using Lib;
 @model List<ProgramModel>
 
+<div class="tieude_noidung">chương trình đang thực hiện</div>
 @if (Model != null && Model.Count > 0)
 {
     var rw = new Nomark();
     var urlRoot = ViewBag.UrlRoot;
-
-    <div class="tieude_noidung">chương trình đang thực hiện</div>
     @foreach (var item in Model)
     {
         var urlLink = urlRoot + rw.UrlReMark(item.EventName.ToLower()) + "-post" + item.EventID.ToString();
@@ -56,3 +55,10 @@
         </a>
     }
 }
+<div class="tin-tuc-moi">
+    <ul>
+        <li><a href="#">Hỗ trợ phụ nữ biên cương phát triển kinh tế qua Cổng 1400</a></li>
+        <li><a href="#">Kết thúc chương trình "Tết vì người nghèo và nạn nhân chất độc da cam" </a></li>
+        <li><a href="#">Hỗ trợ phụ nữ biên cương phát triển kinh tế qua Cổng 1400</a></li>
+    </ul>
+</div>
