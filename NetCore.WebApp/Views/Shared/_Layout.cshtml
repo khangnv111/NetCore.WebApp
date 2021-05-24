@@ -37,11 +37,11 @@
         </nav>
     </div>
     <div class="noidung_site">
-        <div class="advert_right" id="advert_right" style="position: fixed; left: 0px; z-index: 9; display: none">
+        <div class="advert_right" id="advert_right" style="position: absolute; left: 0px; z-index: 9; display: none">
             <button class="btn-adv-right">x</button>
             <img src="~/images/right.jpg" style="width: 100%" />
         </div>
-        <div class="advert_left" style="position: fixed; right: 0px; z-index: 9; display: none">
+        <div class="advert_left" style="position: absolute; right: 0px; z-index: 9; display: none">
             <button class="btn-adv-left">x</button>
             <img src="~/images/left.gif" style="width: 100%" />
         </div>
@@ -55,7 +55,7 @@
                 </div>
                 <div class="col-lg-4 col-md-4 col-sx-4 col-sm-12">
 
-                    @await Component.InvokeAsync("Program")
+                    @await Component.InvokeAsync("ArticleNew")
 
                     @*<div class="box_gopy" id="gopy">
                             <span>gửi thư góp ý</span>

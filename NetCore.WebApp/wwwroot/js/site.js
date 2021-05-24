@@ -10,23 +10,25 @@ $("a[href='#top']").click(function () {
 _documentHeight = document.body.clientHeight;
 window.onload = function () {
     window.onscroll = function () {
-        //var doc = document.body,
-        //    scrollPosition = doc.scrollTop,
-        //    pageSize = (doc.scrollHeight - doc.clientHeight),
-        //    percentageScrolled = Math.floor((scrollPosition / pageSize) * 100);
-        //console.log('percentageScrolled: ', percentageScrolled, ' pageSize: ', pageSize, ' scrollPosition: ', scrollPosition)
-        //if (percentageScrolled >= 50) { // if the percentage is >= 50, scroll to top
-        //    console.log('come here...')
-        //}
 
-        var _height = $(".advert_right").offset().top;
-        if (_height >= 314) {
-            $(".advert_right").css("top", 0);
-            $(".advert_left").css("top", 0);
+        var _advTop = $(".advert_right").offset().top;
+        var _windowTop = $(window).scrollTop();
+
+        if (_windowTop > 157) {
+            $(".advert_right").css("top", _windowTop + 2);
+            $(".advert_left").css("top", _windowTop + 2);
         } else {
             $('.advert_right').css('top', 'auto').css('left', 'auto');
             $('.advert_left').css('top', 'auto').css('left', 'auto');
         }
+
+        //if (_height >= 314) {
+        //    $(".advert_right").css("top", 0);
+        //    $(".advert_left").css("top", 0);
+        //} else {
+        //    $('.advert_right').css('top', 'auto').css('left', 'auto');
+        //    $('.advert_left').css('top', 'auto').css('left', 'auto');
+        //}
     };
 };
 

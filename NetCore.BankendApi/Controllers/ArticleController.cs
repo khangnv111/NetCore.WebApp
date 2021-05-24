@@ -67,6 +67,15 @@ namespace NetCore.BankendApi.Controllers
             var list = _articleAccess.SP_Article_GetListSameMenu_Web(request.TopRow, request.ArticleID, request.Page, request.PageSize, out totalRow);
             return Ok(new { TotalRow = totalRow, Items = list });
         }
+
+        [HttpGet]
+        [Route("top-new")]
+        public IActionResult TopNew([FromQuery] ArticleRequest request)
+        {
+            int totalRow = 0;
+            var list = _articleAccess.SP_Article_GetTopView_Web(request.TopRow, request.MenuID, request.UrlRedirect, 1, 10, out totalRow);
+            return Ok(new { TotalRow = totalRow, Items = list });
+        }
         #endregion
 
         #region CMS

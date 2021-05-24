@@ -1,64 +1,29 @@
-﻿@using NetCore.ViewModels
+﻿@using NetCore.ViewModels;
 @using Lib;
-@model List<ProgramModel>
+@model List<ArticleModel>
+@{
+    var rw = new Nomark();
+}
 
 <div class="tieude_noidung">chương trình đang thực hiện</div>
-@if (Model != null && Model.Count > 0)
-{
-    var rw = new Nomark();
-    var urlRoot = ViewBag.UrlRoot;
-    @foreach (var item in Model)
-    {
-        var urlLink = urlRoot + rw.UrlReMark(item.EventName.ToLower()) + "-post" + item.EventID.ToString();
-        <a style="cursor:pointer" href="@urlLink">
-            <div class="box_chuong_trinh">
-                <div class="box_img_chuongtrinh"><img class="img-responsive" src="@item.Image"></div>
-                <div class="box_mota_chuongtrinh">@item.EventName</div>
-                <div class="box_noidung_chuongtrinh">
-                    @{
-                        DateTime StartTime = DateTime.Now;
-                        DateTime EndTime = DateTime.Now;
-                        ulong TotalMoney_ = 0;
-                        long TotalMessage = 0;
-                        StartTime = item.StartDate;
-                        EndTime = item.EndDate;
-                    }
 
-                    <span>Soạn: <em>ABC</em> gửi <em>1047</em></span>
-                    <ul>
-                        @if (TotalMessage != 0)
-                        {
-                            <li>@string.Format("{0: ##,###}", TotalMessage).Replace(",", ".")</li>
-                        }
-                        else
-                        {
-                            <li>0</li>
-                        }
-                        <li><img src="~/images/icon_traitim_small.png" alt=""></li>
-                        @if (TotalMessage != 0)
-                        {
-                            <li>@string.Format("{0: ##,###}", TotalMoney_).Replace(",", ".")</li>
-                        }
-                        else
-                        {
-                            <li>0</li>
-                        }
-                    </ul>
-                </div>
-                <div class="box_time_chuongtrinh">
-                    Thời gian: @StartTime.ToString("dd/MM/yyyy") đến @EndTime.ToString("dd/MM/yyyy")
-                    <br>Giá trị: 20.000
-                    đồng/01 tin nhắn
-
-                </div>
-            </div>
-        </a>
-    }
-}
+@*<div class="tin-tuc-moi">
+        <ul>
+            <li><a href="#">Hỗ trợ phụ nữ biên cương phát triển kinh tế qua Cổng 1400</a></li>
+            <li><a href="#">Kết thúc chương trình "Tết vì người nghèo và nạn nhân chất độc da cam" </a></li>
+            <li><a href="#">Hỗ trợ phụ nữ biên cương phát triển kinh tế qua Cổng 1400</a></li>
+        </ul>
+    </div>*@
 <div class="tin-tuc-moi">
     <ul>
-        <li><a href="#">Hỗ trợ phụ nữ biên cương phát triển kinh tế qua Cổng 1400</a></li>
-        <li><a href="#">Kết thúc chương trình "Tết vì người nghèo và nạn nhân chất độc da cam" </a></li>
-        <li><a href="#">Hỗ trợ phụ nữ biên cương phát triển kinh tế qua Cổng 1400</a></li>
+        @if (Model != null && Model.Count > 0)
+        {
+            foreach (var item in Model)
+            {
+                var urlLink = rw.UrlReMark(item.Title.ToLower()) + "-post" + item.ArticleID.ToString();
+                <li><a href="@urlLink">@item.Title</a></li>
+            }
+        }
+
     </ul>
 </div>

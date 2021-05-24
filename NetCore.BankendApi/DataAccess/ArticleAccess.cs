@@ -135,6 +135,33 @@ namespace NetCore.BankendApi.DataAccess
                 return new List<ArticleModel>();
             }
         }
+
+        public List<ArticleModel> SP_Article_GetTopView_Web(int TopRow, int MenuID, string UrlRedirect, int Page, int PageSize, out int TotalRow)
+        {
+            TotalRow = 0;
+            try
+            {
+                var pars = new SqlParameter[6];
+                pars[0] = new SqlParameter("@TopRow", TopRow);
+                pars[1] = new SqlParameter("@MenuID", MenuID);
+                pars[2] = new SqlParameter("@Page", Page);
+                pars[3] = new SqlParameter("@PageSize", PageSize);
+                pars[4] = new SqlParameter("@TotalRow", SqlDbType.Int) { Direction = ParameterDirection.Output };
+                pars[5] = new SqlParameter("@UrlRedirect", UrlRedirect);
+                var list = db.GetListSP<ArticleModel>("SP_Article_GetTopView_Web", pars);
+
+                if (list != null || list.Count >= 0)
+                {
+                    TotalRow = Convert.ToInt32(pars[4].Value);
+                }
+                return list;
+            }
+            catch (Exception ex)
+            {
+                NLogLogger.Exception(ex);
+                return new List<ArticleModel>();
+            }
+        }
         #endregion
 
         #region CMS

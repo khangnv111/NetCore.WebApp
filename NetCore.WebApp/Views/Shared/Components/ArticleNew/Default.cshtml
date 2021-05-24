@@ -1,0 +1,34 @@
+﻿@using NetCore.ViewModels;
+@using Lib;
+@model List<ArticleModel>
+@{
+    var rw = new Nomark();
+}
+
+<div class="tieude_noidung">Tin tức mới nhất </div>
+<div class="tin-tuc-moi">
+    <ul>
+        @if (Model != null && Model.Count > 0)
+        {
+            foreach (var item in Model)
+            {
+                var urlLink = rw.UrlReMark(item.Title.ToLower()) + "-post" + item.ArticleID.ToString();
+
+                <li>
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sx-3 col-sm-12">
+                            <a href="@urlLink"><img src="@item.Image" alt="@item.Title" style="width: 100%;" /></a>
+                        </div>
+                        <div class="col-lg-9 col-md-9 col-sx-9 col-sm-12">
+                            <a href="@urlLink">@item.Title</a>
+                        </div>
+                    </div>
+
+                </li>
+            }
+        }
+
+    </ul>
+
+</div>
+

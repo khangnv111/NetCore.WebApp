@@ -20,10 +20,14 @@ namespace NetCore.WebApp.Controllers.Components
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            string url = _appSetting.UrlApi + "api/program/get?IsSetted=-1&Page=1&PageSize=6";
-            var data = await ApiService.GetAsync<RootObject<ProgramModel>>(url);
-            NLogLogger.Info("Program InvokeAsync: " + JsonConvert.SerializeObject(data));
-            ViewBag.UrlRoot = _appSetting.UrlRoot;
+            //string url = _appSetting.UrlApi + "api/program/get?IsSetted=-1&Page=1&PageSize=6";
+            //var data = await ApiService.GetAsync<RootObject<ProgramModel>>(url);
+            //NLogLogger.Info("Program InvokeAsync: " + JsonConvert.SerializeObject(data));
+            //ViewBag.UrlRoot = _appSetting.UrlRoot;
+
+            string url = _appSetting.UrlApi + "api/article/top-new?TopRow=5";
+            var data = await ApiService.GetAsync<RootObject<ArticleModel>>(url);
+
             return View(data.Items);
         }
     }

@@ -371,8 +371,12 @@ body{overflow-x: hidden;font-family: 'MYRIADPRO-REGULAR';line-height: 1.5;}
  margin:15px 0px;
 }
 
-.tin-tuc-moi ul>li>a{
-	font-size: 17px;
+.tin-tuc-moi ul > li {
+	margin-bottom: 5px
+}
+
+.tin-tuc-moi ul>li>div>a{
+	font-size: 14px;
 }
 .tin-tuc-moi ul > li > a:hover {
 	color: #e31e25;
