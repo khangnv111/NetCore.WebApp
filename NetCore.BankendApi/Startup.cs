@@ -79,6 +79,7 @@ namespace NetCore.BankendApi
             services.AddSingleton<ArticleAccess>();
             services.AddSingleton<ProgramAccess>();
             services.AddSingleton<UserAccess>();
+            services.AddSingleton<AdvertAccess>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

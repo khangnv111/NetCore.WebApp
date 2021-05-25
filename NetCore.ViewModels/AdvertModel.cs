@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -13,5 +14,12 @@ namespace NetCore.ViewModels
         public string Image { get; set; }
         public string ScriptData { get; set; }
         public int Status { get; set; }
+        public IFormFile fileUpload { get; set; }
+    }
+
+    public class AdvertPosModel
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
     }
 }
