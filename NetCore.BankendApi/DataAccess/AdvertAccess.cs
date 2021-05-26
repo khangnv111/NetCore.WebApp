@@ -55,6 +55,7 @@ namespace NetCore.BankendApi.DataAccess
                     new SqlParameter("@_Type", data.Type),
                     new SqlParameter("@_Position", data.Position),
                     new SqlParameter("@_Image", data.Image),
+                    new SqlParameter("@_Link", data.Link),
                     new SqlParameter("@_ScriptData", data.ScriptData)
                 };
                 //pars[15] = new SqlParameter("@ResponseStatus", DbType.Int32) { Direction = ParameterDirection.Output };

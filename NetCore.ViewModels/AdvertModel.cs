@@ -12,6 +12,7 @@ namespace NetCore.ViewModels
         public int Type { get; set; }
         public int Position { get; set; }
         public string Image { get; set; }
+        public string Link { get; set; }
         public string ScriptData { get; set; }
         public int Status { get; set; }
         public IFormFile fileUpload { get; set; }
