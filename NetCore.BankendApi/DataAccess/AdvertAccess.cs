@@ -70,6 +70,24 @@ namespace NetCore.BankendApi.DataAccess
             }
         }
 
+        public int SP_Advert_Delete(int Id)
+        {
+            try
+            {
+                var pars = new SqlParameter[] {
+                    new SqlParameter("@_ID", Id),
+                };
+
+                db.ExecuteNonQuerySP("SP_Advert_Delete", pars);
+                return 1;
+            }
+            catch (Exception ex)
+            {
+                NLogLogger.Exception(ex);
+                return -99;
+            }
+        }
+
         public List<AdvertPosModel> SP_AdvertPosition_Get()
         {
             try

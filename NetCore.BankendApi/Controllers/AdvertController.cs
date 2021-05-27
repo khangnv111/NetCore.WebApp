@@ -61,6 +61,21 @@ namespace NetCore.BankendApi.Controllers
                 return BadRequest("Không thành công");
         }
 
+        [HttpPost("cms/delete")]
+        [Authorize]
+        public IActionResult Delete(AdvertModel data)
+        {
+
+            var res = _advertAccess.SP_Advert_Delete(data.Id);
+
+            if (res > 0)
+            {
+                return Ok("Thành công");
+            }
+            else
+                return BadRequest("Không thành công");
+        }
+
         [HttpGet]
         [Route("pos/get-list")]
         public IActionResult GetPositionList()
