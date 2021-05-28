@@ -16,11 +16,12 @@ namespace NetCore.WebApp.Controllers.Components
 
         public async Task<IViewComponentResult> InvokeAsync(int pos)
         {
-            string url = _appSetting.UrlApi + "api/advert/detail?id=" + pos;
-            var data = await ApiService.GetAsync<RootObject2<AdvertModel>>(url);
-            //NLogLogger.Info("InvokeAsync: " + JsonConvert.SerializeObject(data));
+            string url = _appSetting.UrlApi + "api/advert/get?position=" + pos;
+            var list = await ApiService.GetAsync<RootObject<AdvertModel>>(url);
+            var data = list.Items != null && list.Items.Count > 0 ? list.Items[0] : null;
+
             ViewBag.Pos = pos;
-            return View(data.Items);
+            return View(data);
         }
     }
 }

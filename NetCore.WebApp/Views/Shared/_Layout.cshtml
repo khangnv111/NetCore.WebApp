@@ -59,21 +59,10 @@
 
                     @await Component.InvokeAsync("ArticleNew")
 
-                    @*<div class="box_gopy" id="gopy">
-                    <span>gửi thư góp ý</span>
-                    <ul>
-                        <li><input type="text" id="Email" placeholder="Nhập email"></li>
-                        <li><input type="text" id="Mobile" placeholder="Nhập số điện thoại" maxlength="15"></li>
-                    </ul>
-                    <textarea placeholder="Nhập nội dung" id="Content"></textarea>
-                    <a href="javascript:;" onclick="SendSuggest()">Gửi góp ý</a>
-                </div>*@
                     <div style="margin-top: 10px">
-                        <img src="~/images/pic7.jpg" style="max-width: 100%" />
+                        @await Component.InvokeAsync("Advert", new { pos = 4 })
                     </div>
-                    @*<div style="margin-top: 10px">
-                    <img src="~/images/pic8.jpg" style="max-width: 100%" />
-                </div>*@
+
                 </div>
             </div>
         </div>

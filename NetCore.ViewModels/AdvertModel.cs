@@ -14,7 +14,7 @@ namespace NetCore.ViewModels
         public string Image { get; set; }
         public string Link { get; set; }
         public string ScriptData { get; set; }
-        public int Status { get; set; }
+        public int Status { get; set; } = -1;
         public IFormFile fileUpload { get; set; }
     }
 
