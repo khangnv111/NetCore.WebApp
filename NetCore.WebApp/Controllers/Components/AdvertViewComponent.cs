@@ -14,11 +14,12 @@ namespace NetCore.WebApp.Controllers.Components
             _appSetting = appSetting.Value;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync()
+        public async Task<IViewComponentResult> InvokeAsync(int pos)
         {
-            string url = _appSetting.UrlApi + "api/article/get-list?TopRow=1&isHot=1&Page=1&PageSize=5";
-            var data = await ApiService.GetAsync<RootObject<ArticleModel>>(url);
+            string url = _appSetting.UrlApi + "api/advert/detail?id=" + pos;
+            var data = await ApiService.GetAsync<RootObject2<AdvertModel>>(url);
             //NLogLogger.Info("InvokeAsync: " + JsonConvert.SerializeObject(data));
+            ViewBag.Pos = pos;
             return View(data.Items);
         }
     }

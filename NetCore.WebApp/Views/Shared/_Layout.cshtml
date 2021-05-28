@@ -37,17 +37,19 @@
         </nav>
     </div>
     <div class="noidung_site">
-        <div class="advert_right" id="advert_right" style="position: absolute; left: 0px; z-index: 9; display: none">
-            <button class="btn-adv-right">x</button>
-            <img src="~/images/right.jpg" style="width: 100%" />
+        <div class="advert_right" id="advert_right" style="position: absolute; right: 0px; z-index: 9; display: none">
+            @await Component.InvokeAsync("Advert", new { pos = 2 })
         </div>
-        <div class="advert_left" style="position: absolute; right: 0px; z-index: 9; display: none">
-            <button class="btn-adv-left">x</button>
-            <img src="~/images/left.gif" style="width: 100%" />
+        <div class="advert_left" style="position: absolute; left: 0px; z-index: 9; display: none">
+            @await Component.InvokeAsync("Advert", new { pos = 3 })
         </div>
         <div class="container">
-
-            @await Component.InvokeAsync("Advert")
+            <div class="box_slide">
+                <div class="item">
+                    @await Component.InvokeAsync("Advert", new { pos = 1 })
+                </div>
+            </div>
+            
 
             <div class="row">
                 <div id="ContentSearch">
@@ -58,20 +60,20 @@
                     @await Component.InvokeAsync("ArticleNew")
 
                     @*<div class="box_gopy" id="gopy">
-                            <span>gửi thư góp ý</span>
-                            <ul>
-                                <li><input type="text" id="Email" placeholder="Nhập email"></li>
-                                <li><input type="text" id="Mobile" placeholder="Nhập số điện thoại" maxlength="15"></li>
-                            </ul>
-                            <textarea placeholder="Nhập nội dung" id="Content"></textarea>
-                            <a href="javascript:;" onclick="SendSuggest()">Gửi góp ý</a>
-                        </div>*@
+                    <span>gửi thư góp ý</span>
+                    <ul>
+                        <li><input type="text" id="Email" placeholder="Nhập email"></li>
+                        <li><input type="text" id="Mobile" placeholder="Nhập số điện thoại" maxlength="15"></li>
+                    </ul>
+                    <textarea placeholder="Nhập nội dung" id="Content"></textarea>
+                    <a href="javascript:;" onclick="SendSuggest()">Gửi góp ý</a>
+                </div>*@
                     <div style="margin-top: 10px">
                         <img src="~/images/pic7.jpg" style="max-width: 100%" />
                     </div>
                     @*<div style="margin-top: 10px">
-                            <img src="~/images/pic8.jpg" style="max-width: 100%" />
-                        </div>*@
+                    <img src="~/images/pic8.jpg" style="max-width: 100%" />
+                </div>*@
                 </div>
             </div>
         </div>

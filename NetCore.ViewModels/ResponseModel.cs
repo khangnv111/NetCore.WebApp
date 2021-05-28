@@ -14,4 +14,11 @@ namespace NetCore.ViewModels
         public List<T> Items { get; set; }
         public T link { get; set; }
     }
+
+    public class RootObject2<T>
+    {
+        public int TotalRow { get; set; }
+        public T Items { get; set; }
+        public T link { get; set; }
+    }
 }

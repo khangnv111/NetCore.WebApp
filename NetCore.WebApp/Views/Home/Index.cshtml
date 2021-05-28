@@ -73,9 +73,13 @@
     </ul>
 
     <div class="item">
-        <a href="#">
-            <img src="~/images/srv_thumb.jpg" style="width: 100%" />
-        </a>
+        @if (Model.Advert != null)
+        {
+            <a href="@Model.Advert.Link">
+                <img src="@Model.Advert.Image" style="width: 100%" />
+            </a>
+        }
+
     </div>
 
     <div class="tieude_noidung_trai">

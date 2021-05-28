@@ -36,6 +36,16 @@ namespace NetCore.BankendApi.Controllers
             return Ok(new { TotalRow = list.Count, Items = list });
         }
 
+        [HttpGet]
+        [Route("detail")]
+        public IActionResult GetDetail([FromQuery] AdvertModel request)
+        {
+            var list = _advertAccess.SP_Advert_GetList(0, 0, -1);
+            var data = list.Find(x => x.Id == request.Id);
+
+            return Ok(new { TotalRow = list.Count, Items = data });
+        }
+
         [HttpPost("cms/insert-update")]
         [Authorize]
         public async Task<IActionResult> InsertUpdate([FromForm] AdvertModel data)

@@ -1,18 +1,20 @@
 ﻿@using NetCore.ViewModels
-@model List<ArticleModel>
-@if (Model != null && Model.Count > 0)
+@model AdvertModel
+@if (Model != null)
 {
-    <div class="box_slide">
-        
-        @for (int i = 0; i < Model.Count; i++)
+    if (Model.Type == 1)
+    {
+        if (Model.Id == 2 || Model.Id == 3)
         {
-
-            <div class="item">
-                <a href="#">
-                    <img src="~/images/srv_thumb.jpg" style="width: 100%"/>
-                </a>
-            </div>
-
+            <button class="btn-adv-right">x</button>
         }
-    </div>
+        <a href="@Model.Link">
+            <img src="@Model.Image" style="width: 100%" />
+        </a>
+    }
+    else
+    {
+        @Html.Raw(Model.ScriptData)
+    }
+
 }

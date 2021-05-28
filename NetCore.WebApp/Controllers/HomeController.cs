@@ -38,11 +38,15 @@ namespace NetCore.WebApp.Controllers
             string urlMenu = _appSetting.UrlApi + "api/article/menu/get?MenuIDs=5&GetChild=1&Status=1";
             var listMenu = await ApiService.GetAsync<RootObject<MenuModel>>(urlMenu);
 
+            string urlAdv = _appSetting.UrlApi + "api/advert/detail?id=5";
+            var dataAdv = await ApiService.GetAsync<RootObject2<AdvertModel>>(urlAdv);
+
             var data = new HomeViewModel
             {
                 ListArticle = listArt.Items,
                 ListVideo = listVideo.Items,
                 ListMenu = listMenu.Items,
+                Advert = dataAdv.Items
             };
             ViewBag.UrlRoot = _appSetting.UrlRoot;
 
